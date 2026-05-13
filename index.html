@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Az Meer(SMC-Private) Limited - Professional Software & Digital Solutions</title>
+    <meta name="description"
+        content="Az Meer(SMC-Private) Limited - Professional software development, web applications, mobile apps, graphic design, and digital marketing solutions.">
+    <link rel="stylesheet" href="main.css?v=1.3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="privacy.html" class="dropdown-link">Privacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-grain"></div>
+        <div class="hero-3d-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="container hero-main-container">
+            <div class="hero-brand-box">
+                <h1 class="hero-company-name">Az Meer<br><span class="highlight">(SMC-Private) Limited</span></h1>
+            </div>
+
+            <div class="hero-bottom-content" id="heroBottomContent">
+                <div class="hero-details">
+                    <p class="hero-subtitle">Premium Digital Agency</p>
+                    <p class="hero-description">Innovating your digital future with world-class software development and strategic digital solutions.</p>
+                    <div class="hero-buttons">
+                        <a href="services.html" class="btn btn-primary">Our Services <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+                        <a href="payments.html" class="btn btn-secondary" style="background: rgba(255,255,255,0.05); color: white; border-color: rgba(255,255,255,0.1);"><i class="fas fa-credit-card"></i> Payment Options</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <div class="about-tag">Since 2024</div>
+                    <h2 class="about-title">Empowering Businesses Through <span>Digital Excellence</span></h2>
+                    <p class="about-lead">Az Meer(SMC-Private) Limited isn't just a software house; we are your strategic partner in navigating the digital landscape.</p>
+                    <p class="about-description">Founded with a vision to bridge the gap between complex problems and elegant tech solutions, we've evolved into a full-service digital agency. Our approach combines technical mastery with creative intuition.</p>
+
+                    <div class="about-features">
+                        <div class="feature-mini">
+                            <div class="mini-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="mini-text">
+                                <h4>Advanced Tech</h4>
+                                <p>Using the latest frameworks and cloud technologies.</p>
+                            </div>
+                        </div>
+                        <div class="feature-mini">
+                            <div class="mini-icon"><i class="fas fa-fingerprint"></i></div>
+                            <div class="mini-text">
+                                <h4>User-Centric</h4>
+                                <p>Designs built around human behavior and accessibility.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">98%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">24/7</span>
+                            <span class="stat-label">Expert Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="visual-stack">
+                        <div class="stack-card card-top">
+                            <i class="fas fa-code"></i>
+                            <span>Clean Architecture</span>
+                        </div>
+                        <div class="stack-card card-middle">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Scalable Systems</span>
+                        </div>
+                        <div class="visual-main">
+                            <div class="experience-badge">
+                                <strong>5+</strong>
+                                <span>Years of Expertise</span>
+                            </div>
+                            <i class="fas fa-rocket visual-icon" style="font-size: 8rem; color: var(--primary-color);"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" style="padding: 100px 0; background: #ffffff; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Your Path to <span>Success</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">A streamlined process for world-class results.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">1</div>
+                    <h3 style="margin-bottom: 15px;">Discovery</h3>
+                    <p style="color: var(--text-muted);">We analyze your goals and define a clear technical roadmap.</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">2</div>
+                    <h3 style="margin-bottom: 15px;">Development</h3>
+                    <p style="color: var(--text-muted);">Our experts build your solution with clean code and agile methods.</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">3</div>
+                    <h3 style="margin-bottom: 15px;">Launch</h3>
+                    <p style="color: var(--text-muted);">We deploy your project and provide comprehensive support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our <span>Services</span></h2>
+
+            <!-- Service Search Bar -->
+            <div style="max-width: 600px; margin: -20px auto 50px; position: relative;">
+                <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.1rem;"></i>
+                <input type="text" id="serviceSearch" placeholder="What service are you looking for today?"
+                    style="width: 100%; padding: 18px 25px 18px 55px; border-radius: 16px; border: 1px solid #e2e8f0; outline: none; transition: 0.3s; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);"
+                    onfocus="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 10px 25px rgba(37, 99, 235, 0.1)';"
+                    onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
+            </div>
+
+            <div class="services-grid" id="servicesGrid" data-limit="13">
+                <!-- Services loaded dynamically -->
+                <div class="loader-placeholder" style="text-align: center; grid-column: 1/-1; padding: 3rem;">
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="services.html" class="btn btn-primary" style="padding: 16px 60px; font-size: 1.1rem; border-radius: 50px; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);">
+                    View More Services <i class="fas fa-arrow-right" style="margin-left: 12px;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Services Section -->
+    <section id="top-services" class="top-services" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Based on what you might be <span>looking for</span></h2>
+
+            <div class="marketplace-layout">
+                <aside class="m-sidebar">
+                    <!-- Loaded dynamically -->
+                </aside>
+
+                <div class="services-grid" id="topMarketplaceGrid" data-limit="9">
+                    <!-- Loaded dynamically -->
+                    <div class="loader-placeholder" style="text-align: center; grid-column: 1/-1; padding: 3rem;">
+                        <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="top-services.html" class="btn btn-secondary" style="padding: 14px 40px; border-radius: 50px;">
+                    Explore More Top Services <i class="fas fa-external-link-alt" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="blogs">
+        <div class="container">
+            <h2 class="section-title">Blogs</h2>
+            <div class="blogs-grid" id="blogsGrid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="faqs">
+        <div class="container">
+            <h2 class="section-title">FAQs</h2>
+            <div class="faq-list" id="faqList">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Tech Stack -->
+    <section class="global-tech" style="padding: 60px 0; background: #fff; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; opacity: 0.4; filter: grayscale(1);">
+                <i class="fab fa-react fa-3x" title="React"></i>
+                <i class="fab fa-node-js fa-3x" title="Node.js"></i>
+                <i class="fab fa-php fa-3x" title="PHP"></i>
+                <i class="fab fa-laravel fa-3x" title="Laravel"></i>
+                <i class="fab fa-python fa-3x" title="Python"></i>
+                <i class="fab fa-aws fa-3x" title="AWS"></i>
+                <i class="fab fa-docker fa-3x" title="Docker"></i>
+                <i class="fab fa-js-square fa-3x" title="JavaScript"></i>
+                <i class="fab fa-wordpress fa-3x" title="WordPress"></i>
+                <i class="fab fa-shopify fa-3x" title="Shopify"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

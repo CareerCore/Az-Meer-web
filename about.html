@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="privacy.html" class="dropdown-link">Privacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-hero" style="padding-top: 180px; padding-bottom: 100px; background: linear-gradient(to bottom, #f1f5f9, #ffffff);">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <div class="about-tag">About Our Mission</div>
+                    <h2 class="about-title">Leading the Way in <span>Software Innovation</span></h2>
+                    <p class="about-lead">Az Meer(SMC-Private) Limited is dedicated to delivering high-quality solutions that drive business growth.</p>
+                    <p class="about-description">With years of experience in web development, mobile applications, and digital services, we've helped numerous clients achieve their goals. Our team of expert developers, designers, and marketing professionals work collaboratively to create innovative solutions tailored to your unique business needs.</p>
+
+                    <div class="about-features">
+                        <div class="feature-mini">
+                            <div class="mini-icon"><i class="fas fa-check"></i></div>
+                            <div class="mini-text">
+                                <h4>Professional Web</h4>
+                                <p>Modern, responsive websites that convert visitors into customers.</p>
+                            </div>
+                        </div>
+                        <div class="feature-mini">
+                            <div class="mini-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="mini-text">
+                                <h4>Mobile Apps</h4>
+                                <p>Native and cross-platform apps with seamless user experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">12+</span>
+                            <span class="stat-label">Core Services</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">500+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="visual-stack">
+                        <div class="visual-main">
+                            <i class="fas fa-rocket visual-icon" style="font-size: 8rem; color: var(--primary-color);"></i>
+                        </div>
+                        <div class="stack-card card-top">
+                            <i class="fas fa-award"></i>
+                            <span>Quality Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="our-story" style="padding: 100px 0; background: #ffffff;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Our <span>Journey</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">Founded with a vision to revolutionize the digital landscape, Az Meer(SMC-Private) Limited started as a small team of passionate developers. Today, we stand as a leading software house known for precision, innovation, and unwavering commitment to client success.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px;">
+                <div class="card" style="padding: 40px; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">2020: The Spark</h3>
+                    <p style="color: var(--text-muted);">It all began with a simple idea: to build technology that solves real-world problems. We focused on local startups, helping them build their first digital footprints with robust web foundations.</p>
+                </div>
+                <div class="card" style="padding: 40px; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">2022: Expansion</h3>
+                    <p style="color: var(--text-muted);">We expanded our expertise into mobile application development and cloud architecture, scaling our operations to serve international clients across Europe, the USA, and the UAE.</p>
+                </div>
+                <div class="card" style="padding: 40px; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color);">2024: Excellence</h3>
+                    <p style="color: var(--text-muted);">Now, as a registered SMC-Private Limited company, we continue to lead with advanced AI integration, machine learning solutions, and data-driven marketing strategies for global enterprises.</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; background: #f8fafc; padding: 60px; border-radius: 40px;">
+                <div>
+                    <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 20px;">Our <span>Mission</span></h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.7;">To empower businesses globally by delivering innovative, high-performance, and scalable software solutions. We strive to be the bridge between complex business challenges and elegant digital results, ensuring our clients stay ahead in an ever-evolving technological era.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 20px;">Our <span>Vision</span></h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.7;">To become a global benchmark for digital excellence and software craftsmanship. We envision a future where every business, regardless of size, has access to the cutting-edge technology they need to thrive, grow, and make a meaningful impact on the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Az Meer Edge Section -->
+    <section class="edge" style="padding: 100px 0; background: #ffffff;">
+        <div class="container">
+            <h2 class="section-title">The Az Meer <span>Edge</span></h2>
+            <p style="text-align: center; max-width: 700px; margin: -20px auto 60px; color: var(--text-muted); font-size: 1.1rem;">What sets us apart in a crowded marketplace of digital service providers.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <div style="padding: 40px; background: #fff; border-radius: 24px; border: 1px solid #f1f5f9; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-shield-halved" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px;">Uncompromising Security</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Security isn't an afterthought; it's baked into our DNA. We follow industry-standard protocols to ensure your data and your users' information are protected at every layer.</p>
+                </div>
+                <div style="padding: 40px; background: #fff; border-radius: 24px; border: 1px solid #f1f5f9; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-chart-line" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px;">Scalable Architecture</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We build for the future. Our solutions are designed to grow with your business, handling increased traffic and complexity without requiring a complete rewrite.</p>
+                </div>
+                <div style="padding: 40px; background: #fff; border-radius: 24px; border: 1px solid #f1f5f9; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px;">White-Glove Support</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">You're never alone. Our dedicated project managers and technical support team are available 24/7 to ensure your digital assets are running at peak performance.</p>
+                </div>
+                <div style="padding: 40px; background: #fff; border-radius: 24px; border: 1px solid #f1f5f9; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px;">Modern Tech Stack</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We stay ahead of the curve. From React and Node.js to Flutter and AWS, we use the tools that provide the best performance, speed, and user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence Section -->
+    <section class="global-presence" style="padding: 100px 0; background: #f8fafc; overflow: hidden; position: relative;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div style="position: relative;">
+                    <i class="fas fa-globe-americas" style="font-size: 15rem; color: var(--primary-color); opacity: 0.05; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Global Reach, <span>Local Commitment</span></h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">While our roots are in Lahore, Pakistan, our impact is global. We have successfully delivered over 500+ projects for clients across 20+ countries. Our remote-first culture allows us to tap into the best talent and serve clients regardless of their timezone.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px;">North America</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Serving tech hubs in Silicon Valley and Toronto.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px;">Europe & UK</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Delivering enterprise solutions for clients in London and Berlin.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px;">Middle East</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Partnering with startups and government entities in Dubai and Riyadh.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px;">Asia Pacific</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Supporting digital transformation across Singapore and Australia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 30px; box-shadow: var(--shadow-elevated);">
+                    <h3 style="margin-bottom: 25px;">Technical <span>Expertise</span></h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem;">
+                                <span>Web Development (Full Stack)</span>
+                                <span>95%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 95%; height: 100%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem;">
+                                <span>Mobile Apps (iOS & Android)</span>
+                                <span>90%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 90%; height: 100%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem;">
+                                <span>UI/UX & Brand Identity</span>
+                                <span>85%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 85%; height: 100%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem;">
+                                <span>Cloud & AI Integration</span>
+                                <span>80%</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; overflow: hidden;">
+                                <div style="width: 80%; height: 100%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 30px; font-size: 0.9rem; color: var(--text-muted); font-style: italic;">"We don't just write code; we engineer success stories for our global partners."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="core-values" style="padding: 100px 0; background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Our Core <span>Values</span></h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft);">
+                    <div style="width: 70px; height: 70px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem;">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Innovation</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">We constantly push the boundaries of technology to find smarter, more efficient ways to solve complex challenges.</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft);">
+                    <div style="width: 70px; height: 70px; background: rgba(16, 185, 129, 0.1); color: #10b981; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Integrity</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Transparency and honesty are at the heart of every project we undertake and every client relationship we build.</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft);">
+                    <div style="width: 70px; height: 70px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem;">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h4>Quality</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">We never compromise on quality. Our rigorous testing and design standards ensure that we deliver only the best.</p>
+                </div>
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft);">
+                    <div style="width: 70px; height: 70px; background: rgba(79, 70, 229, 0.1); color: var(--secondary-color); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.8rem;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Collaboration</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">We work as an extension of your team, ensuring that your vision is realized through collaborative effort and expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process & Values Section -->
+    <section class="values-grid" style="padding: 100px 0; background: #f8fafc; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Our Core <span>Principles</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">The foundation of every line of code we write and every pixel we design.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <div style="padding: 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <i class="fas fa-heart" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Client Obsession</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We succeed only when our clients succeed. Your vision is our absolute priority.</p>
+                </div>
+                <div style="padding: 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Technical Mastery</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">We never stop learning. We master the tools of tomorrow to build your solutions today.</p>
+                </div>
+                <div style="padding: 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <i class="fas fa-shield-halved" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Absolute Integrity</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Honest timelines, transparent pricing, and robust security in every delivery.</p>
+                </div>
+                <div style="padding: 40px; background: white; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #f1f5f9;">
+                    <i class="fas fa-users-viewfinder" style="font-size: 2.5rem; color: var(--warning-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Inclusive Innovation</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Creating accessible digital experiences that empower everyone, everywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence Section -->
+    <section class="global-reach" style="padding: 100px 0; background: #fff;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Global Operations, <span>Local Excellence</span></h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">Az Meer Limited operates with a global mindset. While our headquarters are in Pakistan, we have successfully delivered high-impact solutions for partners across several key regions.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="padding: 20px; background: #f8fafc; border-radius: 16px; border: 1px solid #f1f5f9;">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">North America</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Silicon Valley & Toronto Hubs.</p>
+                        </div>
+                        <div style="padding: 20px; background: #f8fafc; border-radius: 16px; border: 1px solid #f1f5f9;">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Europe & UK</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">London & Berlin Operations.</p>
+                        </div>
+                        <div style="padding: 20px; background: #f8fafc; border-radius: 16px; border: 1px solid #f1f5f9;">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Middle East</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Dubai & Riyadh Partnerships.</p>
+                        </div>
+                        <div style="padding: 20px; background: #f8fafc; border-radius: 16px; border: 1px solid #f1f5f9;">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Asia Pacific</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Singapore & Australia Innovation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-earth-americas" style="font-size: 15rem; color: var(--primary-color); opacity: 0.1;"></i>
+                    <h3 style="margin-top: 20px;">Delivering in 20+ Countries</h3>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Our remote-first culture ensures seamless collaboration across all timezones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Process Section -->
+    <section class="process" style="padding: 100px 0; background: #ffffff;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">How We <span>Build Success</span></h2>
+                    <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">Our methodology is designed to minimize risk and maximize impact. We follow a structured approach to ensure your project is delivered on time and beyond expectations.</p>
+
+                    <div style="display: flex; flex-direction: column; gap: 30px;">
+                        <div style="display: flex; gap: 20px;">
+                            <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary-color); opacity: 0.3;">01</div>
+                            <div>
+                                <h4 style="font-weight: 700;">Discovery & Strategy</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">We dive deep into your business goals, target audience, and competition to create a winning roadmap.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary-color); opacity: 0.3;">02</div>
+                            <div>
+                                <h4 style="font-weight: 700;">Design & Prototyping</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Our designers craft intuitive, high-converting interfaces that prioritize user experience and brand identity.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary-color); opacity: 0.3;">03</div>
+                            <div>
+                                <h4 style="font-weight: 700;">Development & Testing</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Clean code meets robust architecture. We build scalable systems and test them rigorously for performance.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary-color); opacity: 0.3;">04</div>
+                            <div>
+                                <h4 style="font-weight: 700;">Launch & Support</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">We handle the deployment and provide ongoing support to ensure your product continues to evolve and grow.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: var(--bg-main); padding: 50px; border-radius: 40px; text-align: center;">
+                    <i class="fas fa-chess-king" style="font-size: 6rem; color: var(--primary-color); margin-bottom: 30px;"></i>
+                    <h3>Ready to Start?</h3>
+                    <p style="color: var(--text-muted); margin: 20px 0 30px;">Let's transform your vision into a digital masterpiece. Our experts are waiting to hear from you.</p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Get Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

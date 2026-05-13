@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="team.html" class="dropdown-link active">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="team-hero" style="padding-top: 180px; padding-bottom: 80px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); text-align: center;">
+        <div class="container">
+            <h1 class="section-title">The Minds Behind <span>Innovation</span></h1>
+            <p style="max-width: 700px; margin: -20px auto 40px; color: var(--text-muted); font-size: 1.2rem;">Meet the world-class architects, designers, and strategists dedicated to transforming your vision into technical excellence.</p>
+
+            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--primary-color);">10+</h3>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Core Experts</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--primary-color);">50+</h3>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Combined Years</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2.5rem; font-weight: 800; color: var(--primary-color);">100%</h3>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">In-House Talent</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="team" style="padding-top: 80px; padding-bottom: 100px;">
+        <div class="container">
+            <h2 class="section-title">Meet Our <span>Experts</span></h2>
+            <div class="team-grid" id="teamGrid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Culture Section -->
+    <section class="team-culture" style="padding: 100px 0; background: #ffffff; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div style="position: relative;">
+                    <div style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: rgba(37, 99, 235, 0.1); border-radius: 20px; z-index: 0;"></div>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Our Team Culture" style="width: 100%; border-radius: 30px; position: relative; z-index: 1; box-shadow: var(--shadow-elevated);">
+                    <div style="position: absolute; bottom: 30px; right: -20px; background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 2; border: 1px solid #f1f5f9;">
+                        <p style="font-weight: 800; color: var(--primary-color); font-size: 1.2rem; margin-bottom: 5px;">Innovation First</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">It's not just work, it's a passion.</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Our <span>Collaborative</span> Culture</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">At Az Meer Limited, we believe that the best solutions are born from a culture of open communication, continuous learning, and mutual respect. Our team isn't just a group of employees; we are a family of digital craftsmen.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <h4 style="margin-bottom: 10px; color: #1e293b;"><i class="fas fa-brain" style="color: var(--primary-color); margin-right: 10px;"></i> Growth Mindset</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">We invest in our people, providing continuous training in the latest technologies.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px; color: #1e293b;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Client Obsession</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Every line of code we write is focused on delivering maximum value to our partners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers" style="padding: 100px 0; background: #f8fafc;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Want to <span>Join Us?</span></h2>
+            <p style="max-width: 600px; margin: -20px auto 50px; color: var(--text-muted); font-size: 1.1rem;">We are always looking for passionate developers, designers, and creative thinkers to join our growing global team.</p>
+
+            <div style="background: white; padding: 60px; border-radius: 40px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: left;">
+                    <div style="padding: 30px; border-radius: 20px; background: #fcfdfe; border: 1px solid #f1f5f9;">
+                        <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Remote / Full-time</span>
+                        <h4 style="margin-top: 15px; margin-bottom: 10px;">Senior Full-Stack Developer</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Expertise in React, Node.js, and Cloud Architecture required.</p>
+                        <a href="contact.html" style="font-weight: 700; color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">Apply Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div style="padding: 30px; border-radius: 20px; background: #fcfdfe; border: 1px solid #f1f5f9;">
+                        <span style="background: rgba(37, 99, 235, 0.1); color: var(--primary-color); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Hybrid / Lahore</span>
+                        <h4 style="margin-top: 15px; margin-bottom: 10px;">UI/UX Interaction Designer</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Focus on creating seamless, user-centric digital experiences.</p>
+                        <a href="contact.html" style="font-weight: 700; color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">Apply Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div style="padding: 30px; border-radius: 20px; background: #fcfdfe; border: 1px solid #f1f5f9;">
+                        <span style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Freelance / Global</span>
+                        <h4 style="margin-top: 15px; margin-bottom: 10px;">Cloud Security Consultant</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Help us architect secure, enterprise-grade cloud solutions.</p>
+                        <a href="contact.html" style="font-weight: 700; color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">Apply Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div style="margin-top: 50px; border-top: 1px solid #f1f5f9; padding-top: 40px;">
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Don't see a position that fits? Send us your resume anyway!</p>
+                    <a href="mailto:teamabhpk@gmail.com" class="btn btn-primary">Submit Open Application</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support CTA Section -->
+    <section class="team-cta" style="padding: 100px 0; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: white;">Work with the <span>Best in the Industry</span></h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 40px;">Our senior architects and consultants are ready to help you scale your business with precision-built software.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; padding: 18px 45px;">Request a Consultation</a>
+                <button class="btn btn-secondary" onclick="toggleLiveChat()" style="border-color: white; color: white; padding: 18px 45px;">
+                    <i class="fas fa-comment-dots" style="margin-right: 10px;"></i> Talk to Our Team
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

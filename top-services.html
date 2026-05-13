@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Services - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .top-hero {
+            padding-top: 180px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+        }
+        .top-hero h1 { color: white; margin-bottom: 20px; }
+        .top-hero p { color: #94a3b8; font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .benefit-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-elevated); }
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link active">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="top-hero">
+        <div class="container">
+            <h1 class="section-title" style="color: white;">Our <span>Elite Solutions</span></h1>
+            <p>Hand-picked, high-impact services designed for businesses that demand the absolute best in digital craftsmanship.</p>
+        </div>
+    </header>
+
+    <section class="benefits" style="padding: 100px 0; background: #fff;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 80px;">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Premium Quality</h3>
+                    <p style="color: var(--text-muted);">Every elite service undergoes a double quality-assurance check before delivery.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Priority Delivery</h3>
+                    <p style="color: var(--text-muted);">Get your project delivered faster with our dedicated top-tier resource allocation.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                    <h3>24/7 VIP Support</h3>
+                    <p style="color: var(--text-muted);">Direct line to our senior project managers for any assistance, anytime.</p>
+                </div>
+            </div>
+
+            <!-- New Comparison Section -->
+            <div style="background: #f8fafc; border-radius: 30px; padding: 60px; margin-top: 50px; border: 1px solid #e2e8f0;">
+                <h2 style="text-align: center; margin-bottom: 40px;">Standard vs <span>Elite Experience</span></h2>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden;">
+                        <thead>
+                            <tr style="background: #1e293b; color: white; text-align: left;">
+                                <th style="padding: 20px;">Feature</th>
+                                <th style="padding: 20px;">Standard Service</th>
+                                <th style="padding: 20px; background: var(--primary-color);">Elite Service</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 20px; font-weight: 700;">Team Expertise</td>
+                                <td style="padding: 20px;">Verified Professionals</td>
+                                <td style="padding: 20px; font-weight: 700; color: var(--primary-color);">Senior Experts & Lead Architects</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 20px; font-weight: 700;">Delivery Speed</td>
+                                <td style="padding: 20px;">Standard Timeline</td>
+                                <td style="padding: 20px; font-weight: 700; color: var(--primary-color);">Accelerated Priority Workflow</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 20px; font-weight: 700;">Support Level</td>
+                                <td style="padding: 20px;">Ticket-based Support</td>
+                                <td style="padding: 20px; font-weight: 700; color: var(--primary-color);">Dedicated 24/7 VIP Concierge</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; font-weight: 700;">Code/Design Quality</td>
+                                <td style="padding: 20px;">High Quality</td>
+                                <td style="padding: 20px; font-weight: 700; color: var(--primary-color);">Enterprise Grade & Double Audited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="top-services" style="padding-top: 0; background: #f8fafc; padding-bottom: 100px;">
+        <div class="container">
+            <h2 class="section-title">Explore <span>Premium Gigs</span></h2>
+            <div class="services-grid" id="topMarketplaceGrid">
+                <!-- Dynamically loaded via main.js -->
+                <div style="text-align: center; grid-column: 1/-1; padding: 100px;">
+                    <i class="fas fa-circle-notch fa-spin fa-3x" style="color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-badges" style="padding: 80px 0; background: #fff; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2>Why Trust <span>Az Meer Elite?</span></h2>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 60px; opacity: 0.5;">
+                <div style="text-align: center;"><i class="fas fa-shield-alt fa-3x"></i><p style="margin-top: 10px; font-weight: 700;">Verified</p></div>
+                <div style="text-align: center;"><i class="fas fa-certificate fa-3x"></i><p style="margin-top: 10px; font-weight: 700;">Certified</p></div>
+                <div style="text-align: center;"><i class="fas fa-user-shield fa-3x"></i><p style="margin-top: 10px; font-weight: 700;">Secure</p></div>
+                <div style="text-align: center;"><i class="fas fa-award fa-3x"></i><p style="margin-top: 10px; font-weight: 700;">Award Winning</p></div>
+            </div>
+
+            <!-- New Elite FAQ Section -->
+            <div style="max-width: 900px; margin: 80px auto 0;">
+                <h2 style="text-align: center; margin-bottom: 40px;">Elite Service <span>FAQs</span></h2>
+                <div class="faq-list">
+                    <details class="faq-card">
+                        <summary class="faq-question">
+                            <span>How are "Top Services" different from standard ones?</span>
+                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Top Services are our highest-rated offerings, managed by our most senior lead architects. They include priority scheduling, enterprise-grade auditing, and direct 24/7 access to project leads.</p>
+                        </div>
+                    </details>
+                    <details class="faq-card">
+                        <summary class="faq-question">
+                            <span>Is the delivery time guaranteed?</span>
+                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Yes. Elite services follow an accelerated workflow with dedicated resources, ensuring we meet or beat our promised deadlines without compromising on quality.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Elite CTA -->
+    <section style="padding: 100px 0; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: white;">Ready for the <span>Elite Tier?</span></h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 40px;">Experience the pinnacle of software development and digital strategy. Our senior team is ready to scale your vision.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; padding: 18px 45px;">Request a Custom Quote</a>
+                <button class="btn btn-secondary" onclick="toggleLiveChat()" style="border-color: white; color: white; padding: 18px 45px;">
+                    <i class="fas fa-comment-dots" style="margin-right: 10px;"></i> Chat with Senior Manager
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

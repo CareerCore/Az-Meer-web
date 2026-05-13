@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Apps - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .apps-hero {
+            padding-top: 180px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            text-align: center;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .app-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-elevated);
+        }
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 22px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .app-card:hover .app-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--primary-color);
+            color: white;
+        }
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        .app-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .app-desc {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .app-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .play-store-badge {
+            height: 40px;
+            transition: 0.3s;
+        }
+        .play-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Why Us Section */
+        .why-apps {
+            background: #fff;
+            padding: 100px 0;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .why-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: #f8fafc;
+            transition: 0.3s;
+        }
+        .why-item:hover {
+            background: #fff;
+            box-shadow: var(--shadow-soft);
+            transform: translateY(-5px);
+        }
+        .why-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .why-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        /* Stats Banner */
+        .app-stats {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-box h2 { font-size: 2.5rem; font-weight: 800; }
+        .stat-box p { opacity: 0.9; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="apps.html" class="dropdown-link active">Our Apps</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="apps-hero">
+        <div class="container">
+            <h1 class="section-title">Our <span>Mobile Apps</span></h1>
+            <p style="max-width: 700px; margin: -20px auto 40px; color: var(--text-muted); font-size: 1.2rem;">Innovative, fast, and user-friendly applications designed to solve real-world problems. Available now on Google Play Store.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://play.google.com/store/apps/dev?id=7792521008004964438" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-google-play" style="margin-right: 10px;"></i> Visit Play Console
+                </a>
+                <a href="#apps-list" class="btn btn-secondary">Explore Our Collection</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="app-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h2>10K+</h2>
+                    <p>Total Downloads</p>
+                </div>
+                <div class="stat-box">
+                    <h2>4.8/5</h2>
+                    <p>Average Rating</p>
+                </div>
+                <div class="stat-box">
+                    <h2>3+</h2>
+                    <p>Active Apps</p>
+                </div>
+                <div class="stat-box">
+                    <h2>24/7</h2>
+                    <p>Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apps-list" class="apps-list" style="padding: 100px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Browse Our <span>Apps</span></h2>
+                <p style="color: var(--text-muted);">High-performance mobile solutions for every need.</p>
+            </div>
+
+            <div class="apps-grid">
+                <!-- App 1: AzCrypt -->
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="app-category">Security & Tools</span>
+                        <h3 class="app-title">AzCrypt</h3>
+                        <p class="app-desc">High-level encryption tool for securing your sensitive data with modern cryptographic algorithms. Protect your privacy with ease.</p>
+                    </div>
+                    <div class="app-actions">
+                        <a href="app-details.html?app=azcrypt" class="btn btn-secondary btn-sm" style="margin-bottom: 15px; width: 100%;">View Details</a>
+                        <div class="app-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.azmeer.azcrypt" target="_blank">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="play-store-badge">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 2: Calculator -->
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <span class="app-category">Productivity</span>
+                        <h3 class="app-title">Calculator</h3>
+                        <p class="app-desc">A versatile and elegant calculator designed for everyday use. Includes advanced mathematical functions and a clean UI.</p>
+                    </div>
+                    <div class="app-actions">
+                        <a href="app-details.html?app=calculator" class="btn btn-secondary btn-sm" style="margin-bottom: 15px; width: 100%;">View Details</a>
+                        <div class="app-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.azmeer.ringcalculator" target="_blank">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="play-store-badge">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 3: Sun Flower Simulator -->
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <span class="app-category">Simulation / Fun</span>
+                        <h3 class="app-title">Sun Flower Simulator</h3>
+                        <p class="app-desc">Experience the life of a sunflower in this relaxing simulation. Watch it grow and thrive in a beautiful 3D environment.</p>
+                    </div>
+                    <div class="app-actions">
+                        <a href="app-details.html?app=sunflower" class="btn btn-secondary btn-sm" style="margin-bottom: 15px; width: 100%;">View Details</a>
+                        <div class="app-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.azmeer.sunflowersimulator" target="_blank">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="play-store-badge">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-apps">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Why Use <span>Our Apps?</span></h2>
+                <p style="color: var(--text-muted);">We focus on quality, security, and user experience.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <i class="fas fa-user-lock"></i>
+                    <h3>Privacy First</h3>
+                    <p>We believe your data is yours. Our apps are built with privacy-by-design principles.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>High Performance</h3>
+                    <p>Optimized for speed and efficiency, ensuring a smooth experience even on older devices.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-magic"></i>
+                    <h3>Elegant Design</h3>
+                    <p>Our UI/UX designers ensure every interaction is intuitive and aesthetically pleasing.</p>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-sync"></i>
+                    <h3>Regular Updates</h3>
+                    <p>We continuously improve our apps with new features and security patches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="apps.html">Our Apps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

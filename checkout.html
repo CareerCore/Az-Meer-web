@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-page { padding-top: 180px; padding-bottom: 100px; background: #f8fafc; }
+        .checkout-grid { display: grid; grid-template-columns: 1fr 420px; gap: 50px; }
+
+        .checkout-form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #f1f5f9;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-elevated);
+            border: 1px solid #f1f5f9;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .form-section { margin-bottom: 40px; }
+        .form-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+        }
+        .form-section h3 i { color: var(--primary-color); }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 700; font-size: 0.95rem; color: #334155; }
+        .form-group textarea {
+            width: 100%;
+            padding: 18px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+            background: #fcfdfe;
+        }
+        .form-group textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.05); }
+
+        .trust-badges-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .trust-mini { text-align: center; font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+        .trust-mini i { display: block; font-size: 1.2rem; color: var(--success-color); margin-bottom: 8px; }
+
+        .summary-item { display: flex; justify-content: space-between; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #f8fafc; font-weight: 500; }
+        .total-line { display: flex; justify-content: space-between; font-size: 1.6rem; font-weight: 800; color: var(--primary-color); margin-top: 10px; }
+
+        .next-steps { margin-top: 50px; background: #f1f5f9; padding: 30px; border-radius: 24px; }
+        .next-steps h4 { margin-bottom: 15px; font-weight: 800; }
+        .step-item { display: flex; gap: 15px; margin-bottom: 12px; font-size: 0.9rem; color: #475569; }
+        .step-item i { color: var(--primary-color); margin-top: 3px; }
+
+        @media (max-width: 991px) { .checkout-grid { grid-template-columns: 1fr; } .summary-card { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="checkout-page">
+        <div class="container">
+            <div style="margin-bottom: 40px;">
+                <a href="services.html" style="text-decoration:none; color:var(--text-muted); font-weight:700;">
+                    <i class="fas fa-arrow-left"></i> Back to Marketplace
+                </a>
+                <h1 style="font-size: 2.5rem; margin-top: 15px;">Complete Your <span>Order</span></h1>
+                <p style="color: var(--text-muted);">You're just one step away from starting your digital transformation.</p>
+            </div>
+
+            <div class="checkout-grid" id="checkoutGrid">
+                <div class="checkout-side">
+                    <div class="checkout-form-container">
+                        <form id="orderForm">
+                            <div class="form-section">
+                                <h3><i class="fas fa-file-signature"></i> Project Scope</h3>
+                                <div class="form-group">
+                                    <label>What are your specific requirements?</label>
+                                    <textarea id="projectDesc" rows="8" required placeholder="Please describe your project, desired features, and any specific goals you have in mind..."></textarea>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">
+                                        <i class="fas fa-info-circle"></i> Don't worry, you can always update these details later with your assigned manager.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-section" id="authSection">
+                                <h3><i class="fas fa-user-circle"></i> Account Information</h3>
+                                <div style="padding: 30px; border: 2px dashed #e2e8f0; border-radius: 20px; text-align: center;">
+                                    <p id="loginReminder" style="margin-bottom: 15px;">You must be logged in to place an order.</p>
+                                    <button type="button" class="btn btn-secondary" onclick="showLoginModal()">Login / Create Account</button>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 20px;">
+                                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 22px; font-size: 1.2rem; border-radius: 18px;" id="placeOrderBtn">
+                                    <i class="fas fa-rocket"></i> Confirm & Start Project
+                                </button>
+                                <div id="orderStatus" style="margin-top:20px; font-weight:700;"></div>
+                            </div>
+
+                            <div class="trust-badges-row">
+                                <div class="trust-mini"><i class="fas fa-shield-check"></i> Secure Checkout</div>
+                                <div class="trust-mini"><i class="fas fa-sync"></i> Full NDA Protection</div>
+                                <div class="trust-mini"><i class="fas fa-headset"></i> 24/7 Priority Support</div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- FAQ Section for Checkout -->
+                    <div style="margin-top: 40px; padding: 0 20px;">
+                        <h4 style="margin-bottom: 20px;">Common Questions</h4>
+                        <div class="faq-list">
+                            <details class="faq-card" style="background: white;">
+                                <summary class="faq-question">
+                                    <span>What happens after I place the order?</span>
+                                    <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <div class="faq-answer">
+                                    <p>Our senior project manager will review your requirements and assign a lead expert within 2-4 hours. You'll then be invited to a private project dashboard for real-time collaboration.</p>
+                                </div>
+                            </details>
+                            <details class="faq-card" style="background: white;">
+                                <summary class="faq-question">
+                                    <span>When do I need to pay?</span>
+                                    <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                                </summary>
+                                <div class="faq-answer">
+                                    <p>We work on a milestone-based system. Once your project is reviewed, we'll generate the first invoice. You can pay via any of our verified local or international methods.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <!-- New: What's Included Visual Section -->
+                    <div style="margin-top: 60px; padding: 40px; background: #fff; border-radius: 30px; border: 1px solid #f1f5f9;">
+                        <h3 style="margin-bottom: 30px; text-align: center;">Our <span>Service Standards</span></h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                            <div style="display: flex; gap: 15px;">
+                                <i class="fas fa-code" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                                <div>
+                                    <h5 style="margin-bottom: 5px;">Clean Code Only</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">We follow strictly industry-leading architectural patterns for every line of code.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <i class="fas fa-shield-check" style="font-size: 1.5rem; color: #10b981;"></i>
+                                <div>
+                                    <h5 style="margin-bottom: 5px;">Secure Architecture</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Security audits are part of our standard delivery process for all tiers.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <i class="fas fa-file-invoice" style="font-size: 1.5rem; color: #f59e0b;"></i>
+                                <div>
+                                    <h5 style="margin-bottom: 5px;">Full Documentation</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Receive comprehensive technical guides and setup manuals with your product.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <i class="fas fa-copyright" style="font-size: 1.5rem; color: var(--accent-color);"></i>
+                                <div>
+                                    <h5 style="margin-bottom: 5px;">100% IP Ownership</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Once delivered, you own all the rights and source code of your digital asset.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New: Project Timeline Section -->
+                    <div style="margin-top: 60px; padding: 40px; background: #0f172a; color: white; border-radius: 30px;">
+                        <h3 style="color: white; margin-bottom: 40px; text-align: center;">Project <span>Execution Flow</span></h3>
+                        <div style="display: flex; flex-direction: column; gap: 30px;">
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">01</div>
+                                <div>
+                                    <h5 style="color: white; margin-bottom: 5px;">Discovery & Kickoff</h5>
+                                    <p style="font-size: 0.85rem; color: #94a3b8;">Detailed analysis of your scope and assignment of lead architect.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 40px; height: 40px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">02</div>
+                                <div>
+                                    <h5 style="color: white; margin-bottom: 5px;">Execution & Updates</h5>
+                                    <p style="font-size: 0.85rem; color: #94a3b8;">Agile development with bi-weekly demos and real-time status tracking.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 40px; height: 40px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">03</div>
+                                <div>
+                                    <h5 style="color: white; margin-bottom: 5px;">UAT & Quality Control</h5>
+                                    <p style="font-size: 0.85rem; color: #94a3b8;">You test the sandbox environment while we perform final security audits.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 40px; height: 40px; background: #334155; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">04</div>
+                                <div>
+                                    <h5 style="color: white; margin-bottom: 5px;">Deployment & Support</h5>
+                                    <p style="font-size: 0.85rem; color: #94a3b8;">Live launch with 30-day post-launch technical assistance guaranteed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-side">
+                    <div class="summary-card" id="summaryCard">
+                        <h3 style="margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">Order Summary</h3>
+                        <div id="summaryContent">
+                            <div style="text-align: center; padding: 40px;"><i class="fas fa-circle-notch fa-spin fa-2x" style="color:var(--primary-color)"></i></div>
+                        </div>
+
+                        <div class="next-steps">
+                            <h4>Next Steps</h4>
+                            <div class="step-item"><i class="fas fa-check-circle"></i> <span>Requirement Analysis</span></div>
+                            <div class="step-item"><i class="fas fa-check-circle"></i> <span>Lead Architect Assignment</span></div>
+                            <div class="step-item"><i class="fas fa-check-circle"></i> <span>Private Workspace Access</span></div>
+                        </div>
+
+                        <p style="margin-top: 25px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                            By placing an order, you agree to our <a href="privacy.html" style="color:var(--primary-color)">Terms of Service</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        let selectedService = null;
+        let currentUser = null;
+
+        async function initCheckout() {
+            const params = new URLSearchParams(window.location.search);
+            const serviceId = params.get('service_id') || params.get('id');
+
+            if (!serviceId) {
+                window.location.href = 'services.html';
+                return;
+            }
+
+            // Check Auth
+            const authRes = await fetch('api/auth.php?action=check');
+            const authData = await authRes.json();
+            if (authData.ok && authData.authenticated) {
+                currentUser = authData.user;
+                document.getElementById('authSection').innerHTML = `
+                    <h3><i class="fas fa-user-circle"></i> Account Information</h3>
+                    <div style="background: #f8fafc; padding: 25px; border-radius: 20px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 20px;">
+                        <div style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary-color); border: 2px solid #fff; box-shadow: var(--shadow-soft);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <p style="margin:0; font-weight:800; font-size:1.1rem; color:var(--text-main);">${currentUser.display_name || currentUser.username}</p>
+                            <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">${currentUser.email}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                document.getElementById('placeOrderBtn').disabled = true;
+                document.getElementById('placeOrderBtn').innerHTML = '<i class="fas fa-lock"></i> Please Login to Continue';
+            }
+
+            // Load Service
+            try {
+                const res = await fetch('api/content.php?type=services');
+                const data = await res.json();
+                selectedService = data.services.find(s => s.id == serviceId);
+
+                if (selectedService) {
+                    renderSummary(selectedService);
+                } else {
+                    document.getElementById('summaryContent').innerHTML = '<p>Service not found.</p>';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function renderSummary(s) {
+            document.getElementById('summaryContent').innerHTML = `
+                <div style="margin-bottom: 25px;">
+                    <img src="${s.image || 'https://via.placeholder.com/300x200'}" style="width:100%; height:180px; object-fit:cover; border-radius:20px; margin-bottom:20px; box-shadow:var(--shadow-soft);">
+                    <h4 style="font-size:1.2rem; margin-bottom:5px;">${s.title}</h4>
+                    <span style="background:rgba(37, 99, 235, 0.08); color:var(--primary-color); padding:4px 12px; border-radius:100px; font-size:0.75rem; font-weight:800; text-transform:uppercase;">${s.category || 'Professional Service'}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Base Execution</span>
+                    <span>$${s.price}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Project Auditing</span>
+                    <span style="color:var(--success-color)">FREE</span>
+                </div>
+                <div class="summary-item">
+                    <span>Priority Support</span>
+                    <span style="color:var(--success-color)">INCLUDED</span>
+                </div>
+                <div class="total-line" style="margin-top:20px; padding-top:20px; border-top:2px solid #f1f5f9;">
+                    <span>Total</span>
+                    <span>$${s.price}</span>
+                </div>
+                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:15px; text-align:right;">No hidden fees. Taxes included.</p>
+            `;
+        }
+
+        document.getElementById('orderForm').onsubmit = async (e) => {
+            e.preventDefault();
+            if (!currentUser) {
+                showLoginModal();
+                return;
+            }
+
+            const btn = document.getElementById('placeOrderBtn');
+            const status = document.getElementById('orderStatus');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Initializing Project...';
+
+            try {
+                const res = await fetch('api/orders.php?action=create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        service_id: selectedService.id,
+                        price: selectedService.price,
+                        description: document.getElementById('projectDesc').value
+                    })
+                });
+                const data = await res.json();
+
+                if (data.ok) {
+                    status.style.color = 'var(--success-color)';
+                    status.innerHTML = '<i class="fas fa-check-circle"></i> Project initialized successfully! Redirecting to payment portal...';
+                    setTimeout(() => {
+                        window.location.href = `payments.html?amount=${selectedService.price}&order_id=${data.order_id}`;
+                    }, 2000);
+                } else {
+                    status.style.color = 'var(--danger-color)';
+                    status.textContent = data.message || 'Error processing request.';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-rocket"></i> Confirm & Start Project';
+                }
+            } catch (err) {
+                status.textContent = 'Connection error. Please try again.';
+                btn.disabled = false;
+            }
+        };
+
+        initCheckout();
+    </script>
+</body>
+</html>

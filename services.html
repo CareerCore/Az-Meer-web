@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link active">Services</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services" style="padding-top: 160px; background: #f8fafc; padding-bottom: 80px;">
+        <div class="container">
+            <div class="services-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="section-title" style="margin-bottom: 20px;">Explore Our <span>Expertise</span></h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px;">Professional solutions crafted with precision and delivered with excellence.</p>
+
+                <div class="search-container" style="max-width: 700px; margin: 0 auto; position: relative;">
+                    <input type="text" id="serviceSearch" placeholder="What service are you looking for?"
+                        style="width: 100%; padding: 22px 30px 22px 65px; border-radius: 16px; border: 1px solid #e4e5e7; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; background: white;">
+                    <i class="fas fa-search" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); color: var(--primary-color); font-size: 1.2rem;"></i>
+                </div>
+            </div>
+
+            <div class="marketplace-layout">
+                <!-- Marketplace Sidebar -->
+                <aside class="m-sidebar">
+                    <!-- Loaded dynamically via main.js -->
+                </aside>
+
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Dynamic Marketplace Cards loaded via main.js -->
+                    <div style="text-align: center; grid-column: 1/-1; padding: 100px;">
+                        <i class="fas fa-circle-notch fa-spin fa-3x" style="color: var(--primary-color);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" style="padding: 100px 0; background: #ffffff; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">How It <span>Works</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Simple steps to turn your vision into reality.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">1</div>
+                    <h3 style="margin-bottom: 15px;">Choose Service</h3>
+                    <p style="color: var(--text-muted);">Browse our extensive marketplace and find the perfect solution for your needs.</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">2</div>
+                    <h3 style="margin-bottom: 15px;">Place Order</h3>
+                    <p style="color: var(--text-muted);">Provide your project details and secure your booking with our easy checkout.</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="width: 80px; height: 80px; background: rgba(37, 99, 235, 0.1); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; border: 2px dashed var(--primary-color);">3</div>
+                    <h3 style="margin-bottom: 15px;">Get Delivery</h3>
+                    <p style="color: var(--text-muted);">Collaborate with our experts and receive high-quality results within the deadline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Tech Stack -->
+    <section class="tech-stack" style="padding: 60px 0; background: #f8fafc; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; opacity: 0.6; filter: grayscale(1);">
+                <i class="fab fa-react fa-3x"></i>
+                <i class="fab fa-node-js fa-3x"></i>
+                <i class="fab fa-php fa-3x"></i>
+                <i class="fab fa-laravel fa-3x"></i>
+                <i class="fab fa-python fa-3x"></i>
+                <i class="fab fa-aws fa-3x"></i>
+                <i class="fab fa-docker fa-3x"></i>
+                <i class="fab fa-js-square fa-3x"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="service-guarantee" style="padding: 100px 0; background: #f8fafc;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Premium <span>Quality</span> Guarantee</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">At Az Meer, we don't just deliver services; we deliver results that scale. Every project is handled by certified professionals with years of industry experience.</p>
+
+                    <ul style="list-style: none; display: grid; gap: 20px;">
+                        <li style="display: flex; gap: 15px; align-items: center; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.2rem;"></i>
+                            Verified Expert Professionals
+                        </li>
+                        <li style="display: flex; gap: 15px; align-items: center; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.2rem;"></i>
+                            100% Satisfaction or Money Back
+                        </li>
+                        <li style="display: flex; gap: 15px; align-items: center; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.2rem;"></i>
+                            24/7 Priority VIP Support
+                        </li>
+                        <li style="display: flex; gap: 15px; align-items: center; font-weight: 600;">
+                            <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.2rem;"></i>
+                            Secure & Encrypted Transactions
+                        </li>
+                    </ul>
+                </div>
+                <div style="background: white; padding: 50px; border-radius: 40px; box-shadow: var(--shadow-elevated); text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; width: 150px; height: 150px; background: rgba(37, 99, 235, 0.05); border-radius: 50%;"></div>
+                    <i class="fas fa-shield-heart" style="font-size: 5rem; color: var(--primary-color); margin-bottom: 25px;"></i>
+                    <h3>Trusted by 500+ Businesses</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">Join hundreds of satisfied clients who have transformed their digital presence with us.</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px; font-size: 2rem; color: #cbd5e1;">
+                        <i class="fab fa-aws"></i>
+                        <i class="fab fa-google"></i>
+                        <i class="fab fa-stripe"></i>
+                        <i class="fab fa-digital-ocean"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Section -->
+    <section class="testimonials" style="padding: 100px 0; background: #ffffff;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Client <span>Success Stories</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Don't just take our word for it. Hear from our satisfied partners.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="padding: 40px; background: #f8fafc; border-radius: 24px; position: relative;">
+                    <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--primary-color); opacity: 0.1; position: absolute; top: 30px; left: 30px;"></i>
+                    <p style="font-style: italic; color: #475569; margin-bottom: 25px; position: relative; z-index: 1;">"The team at Az Meer delivered our mobile app 2 weeks ahead of schedule. The quality was exceptional and the user feedback has been overwhelmingly positive."</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #ddd; border-radius: 50%; overflow: hidden;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">David Miller</h4>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">CTO, TechVision Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 40px; background: #f8fafc; border-radius: 24px; position: relative;">
+                    <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--primary-color); opacity: 0.1; position: absolute; top: 30px; left: 30px;"></i>
+                    <p style="font-style: italic; color: #475569; margin-bottom: 25px; position: relative; z-index: 1;">"Working with Az Meer was a game-changer for our e-commerce business. Our conversion rate increased by 40% after the website redesign."</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #ddd; border-radius: 50%; overflow: hidden;"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Sarah Jenkins</h4>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Founder, Bloom Fashion</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 40px; background: #f8fafc; border-radius: 24px; position: relative;">
+                    <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--primary-color); opacity: 0.1; position: absolute; top: 30px; left: 30px;"></i>
+                    <p style="font-style: italic; color: #475569; margin-bottom: 25px; position: relative; z-index: 1;">"Professional, responsive, and technically brilliant. They understood our complex requirements and delivered a solution that perfectly fits our needs."</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #ddd; border-radius: 50%; overflow: hidden;"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1rem;">Michael Chen</h4>
+                            <h4 style="margin: 0; font-size: 1rem;">Michael Chen</h4>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Product Manager, FinScope</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Quote CTA -->
+    <section class="custom-quote" style="padding: 80px 0; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: white;">Need a Custom Solution?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 40px;">If our standard packages don't fit your needs, our experts can build a tailored solution just for you.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; padding: 18px 45px;">Request a Custom Quote</a>
+                <button class="btn btn-secondary" onclick="toggleLiveChat()" style="border-color: white; color: white; padding: 18px 45px;">
+                    <i class="fas fa-comment-dots" style="margin-right: 10px;"></i> Talk to an Expert
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" style="padding: 80px 0; background: #ffffff; border-top: 1px solid #f1f5f9;">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <div style="background: #f8fafc; padding: 60px; border-radius: 30px; border: 1px solid #f1f5f9;">
+                <i class="fas fa-envelope-open-text" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                <h2 style="margin-bottom: 15px;">Subscribe to Our Newsletter</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Get the latest tech insights, service updates, and exclusive offers delivered to your inbox.</p>
+                <form style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                    <input type="email" placeholder="Enter your email" style="padding: 15px 25px; border-radius: 12px; border: 1px solid #ddd; flex: 1; min-width: 280px; outline: none;" required>
+                    <button type="submit" class="btn btn-primary" style="padding: 15px 40px;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

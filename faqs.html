@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .faqs-hero {
+            padding-top: 180px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            text-align: center;
+        }
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        .cat-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #f1f5f9;
+            box-shadow: var(--shadow-soft);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .cat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-elevated);
+        }
+        .cat-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .support-cta {
+            background: var(--text-main);
+            color: white;
+            border-radius: 30px;
+            padding: 60px;
+            margin-top: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link active">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="faqs-hero">
+        <div class="container">
+            <h1 class="section-title">How can we <span>help you?</span></h1>
+            <p style="max-width: 600px; margin: -20px auto 40px; color: var(--text-muted); font-size: 1.1rem;">Search our comprehensive help center or browse by category below to find answers to your most pressing questions.</p>
+
+            <div class="search-container" style="max-width: 700px; margin: 0 auto; position: relative;">
+                <input type="text" id="faqSearch" placeholder="Type keywords like 'payments', 'delivery', or 'security'..."
+                    style="width: 100%; padding: 22px 30px 22px 65px; border-radius: 16px; border: 1px solid #e4e5e7; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; background: white;">
+                <i class="fas fa-search" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); color: var(--primary-color); font-size: 1.2rem;"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="help-categories">
+            <div class="cat-card" onclick="filterFaqs('started')">
+                <i class="fas fa-rocket"></i>
+                <h3>Getting Started</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.9rem;">Learn about our process, registration, and initial project steps.</p>
+            </div>
+            <div class="cat-card" onclick="filterFaqs('payments')">
+                <i class="fas fa-credit-card"></i>
+                <h3>Payments & Billing</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.9rem;">Information about local and international payment methods.</p>
+            </div>
+            <div class="cat-card" onclick="filterFaqs('security')">
+                <i class="fas fa-shield-halved"></i>
+                <h3>Security & Privacy</h3>
+                <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.9rem;">How we protect your data and ensure project confidentiality.</p>
+            </div>
+        </div>
+
+        <section class="support-channels" style="margin-top: 80px; text-align: center;">
+            <p style="font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 30px;">Direct Support Channels</p>
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 600;">
+                    <i class="fas fa-envelope" style="color: var(--primary-color);"></i> teamabhpk@gmail.com
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 600;">
+                    <i class="fas fa-phone" style="color: var(--primary-color);"></i> +92 332 8657885
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; color: var(--text-main); font-weight: 600;">
+                    <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp Support
+                </div>
+            </div>
+        </section>
+
+        <section class="faqs" style="padding-top: 100px;">
+            <h2 class="section-title">Common <span>Questions</span></h2>
+            <div class="faq-list" id="faqList">
+                <!-- Dynamically loaded from database -->
+                <div style="text-align: center; padding: 50px;">
+                    <i class="fas fa-circle-notch fa-spin fa-3x" style="color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Help Topics Section -->
+        <section class="help-topics" style="padding: 100px 0; border-top: 1px solid #f1f5f9; margin-top: 50px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: flex-start;">
+                <div>
+                    <h3>Project <span>Lifecycle</span></h3>
+                    <p style="color: var(--text-muted); margin: 20px 0 30px;">Understanding our workflow helps you prepare for a successful collaboration. From the initial spark to the final launch, we're with you.</p>
+
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+                        <li style="display: flex; gap: 15px;">
+                            <div style="color: var(--primary-color); font-weight: 800;">01</div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 5px;">Requirement Analysis</p>
+                                <small style="color: var(--text-muted);">We define the scope and technical specifications based on your vision.</small>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 15px;">
+                            <div style="color: var(--primary-color); font-weight: 800;">02</div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 5px;">Development Phase</p>
+                                <small style="color: var(--text-muted);">Our experts build your solution using agile methodologies.</small>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 15px;">
+                            <div style="color: var(--primary-color); font-weight: 800;">03</div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 5px;">UAT & Deployment</p>
+                                <small style="color: var(--text-muted);">You test the product in a sandbox environment before we go live.</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="background: #f8fafc; padding: 40px; border-radius: 30px; border: 1px solid #f1f5f9;">
+                    <h3 style="margin-bottom: 20px;">Support <span>Guarantees</span></h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 12px; box-shadow: var(--shadow-soft);">
+                            <i class="fas fa-clock" style="color: var(--primary-color);"></i>
+                            <span style="font-weight: 600;">Response time within 2 hours</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 12px; box-shadow: var(--shadow-soft);">
+                            <i class="fas fa-bug" style="color: #ef4444;"></i>
+                            <span style="font-weight: 600;">90-day free bug support</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 12px; box-shadow: var(--shadow-soft);">
+                            <i class="fas fa-layer-group" style="color: #10b981;"></i>
+                            <span style="font-weight: 600;">Comprehensive documentation</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: white; padding: 15px 20px; border-radius: 12px; box-shadow: var(--shadow-soft);">
+                            <i class="fas fa-sync" style="color: #f59e0b;"></i>
+                            <span style="font-weight: 600;">Lifetime architecture updates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-cta">
+            <h2 style="color: white; margin-bottom: 20px;">Still have questions?</h2>
+            <p style="opacity: 0.8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Our dedicated support team is ready to assist you. Whether you have a technical query or need a project consultation, we're here to help.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="toggleLiveChat()">
+                    <i class="fas fa-comments" style="margin-right: 10px;"></i> Start Live Chat
+                </button>
+                <a href="contact.html" class="btn btn-secondary" style="color: white; border-color: rgba(255,255,255,0.3);">
+                    Contact Support
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 100px;">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

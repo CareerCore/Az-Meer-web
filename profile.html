@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-container { display: flex; min-height: 100vh; background: #f1f5f9; position: relative; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #e2e8f0; padding: 30px 20px; display: flex; flex-direction: column; gap: 5px; transition: 0.3s; position: sticky; top: 80px; height: calc(100vh - 80px); }
+        .sidebar .nav-item { display: flex; align-items: center; gap: 15px; padding: 14px 20px; border-radius: 12px; color: #64748b; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .sidebar .nav-item:hover { background: #f8fafc; color: var(--primary-color); }
+        .sidebar .nav-item.active { background: rgba(37, 99, 235, 0.08); color: var(--primary-color); }
+        .sidebar .nav-item i { font-size: 1.1rem; width: 24px; text-align: center; }
+
+        /* Milestones */
+        .milestone-track { display: flex; justify-content: space-between; margin-top: 15px; position: relative; padding: 0 10px; }
+        .milestone-track::before { content: ''; position: absolute; top: 12px; left: 10px; right: 10px; height: 2px; background: #e2e8f0; z-index: 0; }
+        .milestone-step { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .milestone-dot { width: 24px; height: 24px; border-radius: 50%; background: #e2e8f0; border: 4px solid white; box-shadow: 0 0 0 1px #e2e8f0; }
+        .milestone-step.active .milestone-dot { background: var(--primary-color); box-shadow: 0 0 0 1px var(--primary-color); }
+        .milestone-step.completed .milestone-dot { background: #10b981; box-shadow: 0 0 0 1px #10b981; }
+        .milestone-label { font-size: 0.65rem; font-weight: 700; color: #64748b; text-transform: uppercase; }
+        .milestone-step.active .milestone-label { color: var(--primary-color); }
+
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .content-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .content-header h1 { font-size: 1.8rem; font-weight: 800; color: #1e293b; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px; }
+        .stat-card { background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow-soft); display: flex; align-items: center; gap: 20px; }
+        .stat-icon { width: 55px; height: 55px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+        .stat-card:nth-child(1) .stat-icon { background: rgba(37, 99, 235, 0.1); color: var(--primary-color); }
+        .stat-card:nth-child(2) .stat-icon { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .stat-card:nth-child(3) .stat-icon { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+        .stat-info h3 { font-size: 1.8rem; font-weight: 800; color: #1e293b; line-height: 1; }
+        .stat-info p { font-size: 0.85rem; color: #64748b; font-weight: 600; margin-top: 5px; }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: white; border-radius: 20px; box-shadow: var(--shadow-soft); padding: 30px; margin-bottom: 25px; }
+        .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; color: #1e293b; }
+
+        .orders-table-container { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); }
+        .btn-sm { padding: 8px 15px; font-size: 0.85rem; }
+
+        /* Chat Layout */
+        .chat-container { display: grid; grid-template-columns: 320px 1fr; background: white; border-radius: 24px; height: 600px; box-shadow: var(--shadow-soft); overflow: hidden; }
+        .chat-threads { border-right: 1px solid #e2e8f0; background: #fcfdfe; overflow-y: auto; }
+        .chat-main { display: flex; flex-direction: column; height: 100%; }
+        .chat-header-bar { padding: 20px 30px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; }
+        .msg-list { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #f8fafc; }
+        .chat-input-box { padding: 20px; border-top: 1px solid #e2e8f0; }
+
+        .msg { max-width: 80%; padding: 12px 18px; border-radius: 18px; font-size: 0.95rem; }
+        .msg.sent { align-self: flex-end; background: var(--primary-color); color: white; border-bottom-right-radius: 4px; }
+        .msg.received { align-self: flex-start; background: white; color: #1e293b; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; }
+
+        .mobile-header { display: none; background: white; padding: 15px 20px; border-bottom: 1px solid #e2e8f0; align-items: center; gap: 15px; }
+        #sidebarToggle { font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+        @media (max-width: 991px) {
+            .sidebar { position: fixed; left: -280px; top: 0; bottom: 0; z-index: 10000; box-shadow: 20px 0 50px rgba(0,0,0,0.1); height: 100vh; }
+            .sidebar.active { left: 0; }
+            .mobile-header { display: flex; }
+            .dashboard-container { margin-top: 0; }
+            .main-content { padding: 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .chat-container { grid-template-columns: 1fr; }
+            .chat-threads { display: none; }
+        }
+
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 10001; opacity: 0; transition: 0.3s; }
+        .modal-overlay.show { display: flex; opacity: 1; }
+        .modal-panel { background: white; width: 90%; max-width: 500px; padding: 40px; border-radius: 24px; transform: scale(0.9); transition: 0.3s; }
+        .modal-overlay.show .modal-panel { transform: scale(1); }
+    </style>
+</head>
+<body class="dashboard-page">
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="mobile-header">
+        <i class="fas fa-bars" id="sidebarToggle"></i>
+        <span style="font-weight: 800; font-size: 1.1rem;">Client Dashboard</span>
+    </div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="nav-item active" data-view="dashboard">
+                <i class="fas fa-th-large"></i> Overview
+            </div>
+            <div class="nav-item" data-view="orders">
+                <i class="fas fa-shopping-cart"></i> My Orders
+            </div>
+            <div class="nav-item" data-view="team">
+                <i class="fas fa-users"></i> Project Team
+            </div>
+            <div class="nav-item" data-view="chat">
+                <i class="fas fa-comment-alt"></i> Messages
+            </div>
+            <div class="nav-item" data-view="reviews">
+                <i class="fas fa-star"></i> My Reviews
+            </div>
+            <div class="nav-item" data-view="invoices">
+                <i class="fas fa-file-invoice"></i> Billing
+            </div>
+            <div class="nav-item" data-view="account">
+                <i class="fas fa-user-cog"></i> Account Settings
+            </div>
+
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid #f1f5f9;">
+                <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <div>
+                    <h1 id="viewTitle">Overview</h1>
+                    <p style="color: #64748b; margin-top: 5px;" id="welcomeName">Welcome, Client</p>
+                </div>
+            </div>
+
+            <!-- Dashboard View -->
+            <div id="section-dashboard" class="view-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+                        <div class="stat-info"><h3 id="stat-active">0</h3><p>Active Projects</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-check-double"></i></div>
+                        <div class="stat-info"><h3 id="stat-done">0</h3><p>Completed</p></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-info"><h3 id="stat-spent">$0</h3><p>Total Investment</p></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Recent Orders</div>
+                    <div id="ordersTable" class="orders-table-container">
+                        <!-- Loaded via profile.js -->
+                        <div style="padding: 40px; text-align: center;"><i class="fas fa-circle-notch fa-spin"></i> Loading...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders View -->
+            <div id="section-orders" class="view-section">
+                <div class="card">
+                    <div class="card-title">Project History</div>
+                    <div id="fullOrdersTable" class="orders-table-container">
+                        <!-- Shared or separate orders table -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team View -->
+            <div id="section-team" class="view-section">
+                <div class="card">
+                    <div class="card-title">Assigned Experts</div>
+                    <div id="freelancerGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                        <!-- Loaded via profile.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat View -->
+            <div id="section-chat" class="view-section">
+                <div class="chat-container">
+                    <div class="chat-threads" id="chatThreads">
+                        <!-- Threads loaded here -->
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-header-bar">
+                            <h4 id="activeChatHeader">Select a Project</h4>
+                        </div>
+                        <div class="msg-list" id="msgList">
+                            <div style="text-align: center; margin-top: 100px; color: #94a3b8;">
+                                <i class="fas fa-comments fa-3x" style="margin-bottom: 15px; opacity: 0.3;"></i>
+                                <p>Open a project thread to start messaging your manager.</p>
+                            </div>
+                        </div>
+                        <form class="chat-input-box" id="chatForm">
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="file" id="receiptUpload" style="display: none;" accept="image/*">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('receiptUpload').click()" style="padding: 14px 20px;" title="Upload Receipt">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <input type="text" id="chatInput" placeholder="Type your message..." style="flex: 1; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 12px; outline: none;" required>
+                                <button type="submit" class="btn btn-primary" style="padding: 14px 25px;"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account View -->
+            <div id="section-account" class="view-section">
+                <div class="card" style="max-width: 800px;">
+                    <div class="card-title">Profile Information</div>
+                    <form id="accountForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label>Username (Login)</label>
+                                <input type="text" id="accUsername" readonly style="background: #f8fafc; cursor: not-allowed;">
+                            </div>
+                            <div class="form-group">
+                                <label>Public Display Name</label>
+                                <input type="text" id="accName" required placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="accEmail" readonly style="background: #f8fafc; cursor: not-allowed;">
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image URL</label>
+                                <input type="text" id="accImage" placeholder="https://...">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Short Bio (Card Preview)</label>
+                            <textarea id="accBio" rows="2" placeholder="Briefly describe yourself..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Detailed About Me</label>
+                            <textarea id="accAbout" rows="5" placeholder="Share your story, experience, or project goals..."></textarea>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                            <div class="form-group">
+                                <label><i class="fab fa-linkedin"></i> LinkedIn</label>
+                                <input type="text" id="accLinkedin" placeholder="URL">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-github"></i> GitHub</label>
+                                <input type="text" id="accGithub" placeholder="URL">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fab fa-twitter"></i> Twitter</label>
+                                <input type="text" id="accTwitter" placeholder="URL">
+                            </div>
+                        </div>
+
+                        <div id="staffOnlyFields" style="display: none; border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
+                            <div class="card-title" style="font-size: 1rem;">Specialist Details (Freelancer/Staff)</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="form-group">
+                                    <label>Technical Skills (Comma separated)</label>
+                                    <input type="text" id="accSkills">
+                                </div>
+                                <div class="form-group">
+                                    <label>Education</label>
+                                    <input type="text" id="accEducation">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 15px;">Save Profile Changes</button>
+                        <p id="profileMsg" style="margin-top: 15px; text-align: center; font-weight: 700;"></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Reviews View -->
+            <div id="section-reviews" class="view-section">
+                <div class="card">
+                    <div class="card-title">Leave a Review</div>
+                    <p style="color: #64748b; margin-bottom: 20px;">Share your experience with our team on completed projects.</p>
+                    <div id="reviewProjectsList">
+                        <!-- Loaded via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoices View -->
+            <div id="section-invoices" class="view-section">
+                <div class="card">
+                    <div class="card-title">Billing & Invoices</div>
+                    <div class="orders-table-container">
+                        <table style="width:100%; border-collapse:collapse;">
+                            <thead style="background:#f8fafc;">
+                                <tr style="text-align:left">
+                                    <th style="padding:15px">Invoice #</th>
+                                    <th>Project</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceTableBody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Order Modal -->
+    <div class="modal-overlay" id="editOrderModal">
+        <div class="modal-panel">
+            <h2 style="margin-bottom: 20px;">Edit Requirements</h2>
+            <form id="editOrderForm">
+                <input type="hidden" id="editOrderId">
+                <div class="form-group">
+                    <label>Update your project description or special instructions:</label>
+                    <textarea id="editOrderDesc" rows="6" style="width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd;"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Save Changes</button>
+                </div>
+                <p id="editOrderMsg" style="margin-top: 15px; text-align: center;"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" aria-label="Email for newsletter" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

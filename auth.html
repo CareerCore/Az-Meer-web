@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Az Meer(SMC-Private) Limited - Login & Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #4f46e5;
+            --accent: #0ea5e9;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --radius: 28px;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(79, 70, 229, 0.05) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background blobs for light theme */
+        .bg-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(60px);
+            animation: blobFloat 20s infinite alternate;
+        }
+
+        @keyframes blobFloat {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(10%, 10%); }
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 1050px;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            animation: containerEntry 1s var(--transition);
+        }
+
+        @keyframes containerEntry {
+            from { opacity: 0; transform: scale(0.98) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Left Side: Brand */
+        .auth-brand {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .auth-brand h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            animation: titleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .auth-brand h2 span {
+            color: var(--primary);
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ongoing shimmer for the brand span */
+        .auth-brand h2 span::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 200%; }
+        }
+
+        .auth-brand p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: fadeInSimple 1s ease forwards 0.2s;
+            opacity: 0;
+        }
+
+        @keyframes fadeInSimple {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-list { list-style: none; }
+        .feature-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: featureFade 0.6s ease forwards;
+        }
+
+        @keyframes featureFade {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .feature-list li:nth-child(1) { animation-delay: 0.3s; }
+        .feature-list li:nth-child(2) { animation-delay: 0.4s; }
+        .feature-list li:nth-child(3) { animation-delay: 0.5s; }
+        .feature-list li:nth-child(4) { animation-delay: 0.6s; }
+
+        .feature-list i {
+            width: 32px;
+            height: 32px;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        /* Right Side: Form */
+        .auth-content {
+            flex: 1.2;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .toggle-tabs {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 5px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active { color: var(--primary); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+        .form-section.active .form-group {
+            animation: staggerFadeUp 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .form-section.active .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-section.active .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-section.active .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-section.active .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-section.active .submit-btn {
+            animation: staggerFadeUp 0.5s ease forwards 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes staggerFadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group { margin-bottom: 24px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.01em;
+            transition: var(--transition);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px 14px 50px;
+            border: 2px solid #f1f5f9;
+            border-radius: 16px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #f8fafc;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.06);
+        }
+
+        .form-group input:focus + i { color: var(--primary); }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.25);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+        .alert.error { background: #fee2e2; color: #b91c1c; border: 1px solid rgba(185, 28, 28, 0.1); display: flex; }
+        .alert.success { background: #dcfce7; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.1); display: flex; }
+
+        @media (max-width: 900px) {
+            .auth-container { flex-direction: column; max-width: 500px; height: auto; }
+            .auth-brand { padding: 40px; }
+            .auth-brand h2 { font-size: 2.2rem; }
+            .auth-brand p { margin-bottom: 25px; }
+            .feature-list { display: none; }
+            .auth-content { padding: 40px; }
+        }
+
+        .back-home {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.6;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .back-home:hover { opacity: 1; color: var(--primary); transform: translateX(-5px); }
+
+    </style>
+</head>
+<body>
+    <div class="bg-blob" style="top: 0; left: 0;"></div>
+    <div class="bg-blob" style="bottom: 0; right: 0;"></div>
+
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="auth-container">
+        <div class="auth-brand">
+            <h2>Az Meer <span>(SMC-Private) Limited</span></h2>
+            <p>Empowering your business through world-class digital innovation and strategic software excellence.</p>
+            <ul class="feature-list">
+                <li><i class="fas fa-rocket"></i> Scalable Digital Solutions</li>
+                <li><i class="fas fa-fingerprint"></i> User-Centric UX Design</li>
+                <li><i class="fas fa-shield-alt"></i> Enterprise-Grade Security</li>
+                <li><i class="fas fa-headset"></i> 24/7 Premium Support</li>
+            </ul>
+        </div>
+
+        <div class="auth-content">
+            <div class="toggle-tabs">
+                <button class="tab-btn active" onclick="switchTab('signin')">Sign In</button>
+                <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin" class="form-section active">
+                <div id="signinAlert" class="alert"></div>
+                <form onsubmit="handleAuth(event, 'login')">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" required placeholder="name@company.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" required placeholder="••••••••">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Continue to Dashboard</button>
+                </form>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup" class="form-section">
+                <div id="signupAlert" class="alert"></div>
+                <form onsubmit="handleAuth(event, 'signup')">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="signup-name" required placeholder="John Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signup-email" required placeholder="name@company.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Your Role</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-users-cog"></i>
+                            <select id="signup-role" required style="padding-left: 50px;">
+                                <option value="user">I am a Client (Hire Us)</option>
+                                <option value="freelancer">I am a Freelancer (Join Team)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Create Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-password" required placeholder="Minimum 6 characters">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Create My Account</button>
+                </form>
+            </div>
+
+            <p style="margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">
+                By continuing, you agree to our <a href="#" style="color: var(--primary); text-decoration: none;">Terms of Service</a>.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            const targetId = typeof tabId === 'string' ? tabId : null;
+            
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active');
+                if (targetId && b.getAttribute('onclick').includes(targetId)) {
+                    b.classList.add('active');
+                } else if (!targetId && event && b === event.target) {
+                    b.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(targetId || 'signin').classList.add('active');
+        }
+
+        async function handleAuth(event, type) {
+            event.preventDefault();
+            const alertId = type === 'login' ? 'signinAlert' : 'signupAlert';
+            const alert = document.getElementById(alertId);
+            const btn = event.target.querySelector('button');
+
+            alert.style.display = 'none';
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
+
+            let payload = { action: type };
+            if (type === 'login') {
+                payload.email = document.getElementById('login-email').value;
+                payload.password = document.getElementById('login-password').value;
+            } else {
+                payload.username = document.getElementById('signup-name').value;
+                payload.email = document.getElementById('signup-email').value;
+                payload.role = document.getElementById('signup-role').value;
+                payload.password = document.getElementById('signup-password').value;
+            }
+
+            try {
+                const res = await fetch('api/auth.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data.ok) {
+                    alert.innerHTML = '<i class="fas fa-check-circle"></i> Success! Redirecting...';
+                    alert.className = 'alert success';
+                    alert.style.display = 'flex';
+
+                    const params = new URLSearchParams(window.location.search);
+                    let redirect = params.get('redirect');
+
+                    if (redirect && (redirect.startsWith('http') || redirect.includes(':'))) {
+                        redirect = 'index.html';
+                    }
+
+                    setTimeout(() => {
+                        window.location.href = redirect || 'dashboard.php';
+                    }, 1000);
+                } else {
+                    alert.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${data.message}`;
+                    alert.className = 'alert error';
+                    alert.style.display = 'flex';
+                    btn.disabled = false;
+                    btn.textContent = originalText;
+                }
+            } catch (e) {
+                alert.innerHTML = '<i class="fas fa-wifi"></i> Connection error. Please try again.';
+                alert.className = 'alert error';
+                alert.style.display = 'flex';
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+    </script>
+</body>
+</html>

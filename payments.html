@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Payment Portal - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --p-bg: #fdfdfd; --card-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+        body { background-color: var(--p-bg); }
+        .payments-header { padding: 180px 0 60px; text-align: center; background: linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, rgba(79, 70, 229, 0.04) 100%); border-bottom: 1px solid #f1f5f9; }
+        .category-section { padding: 50px 0; }
+        .cat-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 35px; display: flex; align-items: center; gap: 15px; }
+        .cat-title::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+        .payment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .p-card { background: white; border-radius: 24px; padding: 35px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; }
+        .p-card:hover { transform: translateY(-12px); border-color: var(--primary-color); box-shadow: 0 30px 60px -12px rgba(37, 99, 235, 0.12); }
+
+        .p-badge { position: absolute; top: 20px; right: -35px; background: #f1f5f9; color: #64748b; padding: 5px 40px; font-size: 0.65rem; font-weight: 800; transform: rotate(45deg); text-transform: uppercase; letter-spacing: 1px; }
+        .p-card:hover .p-badge { background: var(--primary-color); color: white; }
+
+        .p-brand { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .p-icon { width: 60px; height: 60px; border-radius: 12px; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #f1f5f9; padding: 5px; }
+        .p-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+        .p-name h3 { margin: 0; font-size: 1.3rem; letter-spacing: -0.02em; }
+        .p-name small { color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; }
+
+        .p-detail { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f8fafc; }
+        .p-detail:last-child { border: none; }
+        .d-label { color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
+        .d-value { color: #1e293b; font-weight: 700; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+
+        .copy-btn { background: #f1f5f9; border: none; color: #64748b; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+        .copy-btn:hover { background: var(--primary-color); color: white; transform: scale(1.1); }
+
+        .qr-area { margin-top: 25px; background: #f8fafc; border-radius: 18px; padding: 20px; text-align: center; border: 1px dashed #e2e8f0; }
+        .qr-box { width: 100%; height: 200px; background: white; margin: 0 auto 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #f1f5f9; padding: 10px; }
+        .qr-box img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+
+        .verify-banner { background: #1e293b; color: white; border-radius: 30px; padding: 40px; margin-top: 60px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+        .verify-text h2 { margin-bottom: 10px; color:white; }
+        .verify-text p { opacity: 0.8; }
+
+        .payment-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; padding: 60px 0; border-top: 1px solid #f1f5f9; }
+        .feat-card { text-align: center; padding: 30px; background: white; border-radius: 20px; border: 1px solid #f1f5f9; }
+        .feat-card i { font-size: 2rem; color: var(--primary-color); margin-bottom: 20px; }
+        .feat-card h4 { margin-bottom: 10px; font-weight: 700; }
+        .feat-card p { color: #64748b; font-size: 0.9rem; }
+
+        @media (max-width: 768px) { .verify-banner { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link active">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="payments-header">
+        <div class="container">
+            <h1 class="section-title">Professional Billing & Payments</h1>
+            <p class="hero-description">Securely settle your invoices using our verified local and international payment gateways.</p>
+
+            <div id="activeOrderBanner" class="hidden" style="max-width: 800px; margin: 40px auto 0; background: white; padding: 30px; border-radius: 20px; border: 2px solid var(--primary-color); box-shadow: var(--shadow-elevated);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <div style="text-align: left;">
+                        <h4 style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Active Order #<span id="displayOrderId"></span></h4>
+                        <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--primary-color);" id="displayUsdAmount">$--</h2>
+                    </div>
+                    <div style="text-align: right; background: #f8fafc; padding: 15px 25px; border-radius: 15px; border: 1px solid #e2e8f0;">
+                        <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px;">Convert to Local:</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #1e293b;" id="displayPkrAmount">Rs --</h3>
+                        <small style="font-size: 0.7rem; color: #94a3b8;">Rate: 1 USD = 285 PKR</small>
+                    </div>
+                </div>
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #f1f5f9; color: var(--text-muted); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> Please pay the exact amount and **upload a receipt screenshot** below once done.
+
+                    <div id="directUploadArea" style="margin-top: 20px; background: #f0f7ff; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-color); text-align: center;">
+                        <input type="file" id="directReceiptUpload" style="display: none;" accept="image/*">
+                        <button class="btn btn-primary" onclick="document.getElementById('directReceiptUpload').click()">
+                            <i class="fas fa-cloud-upload-alt"></i> Select Receipt Screenshot
+                        </button>
+                        <p id="uploadStatus" style="margin-top: 10px; font-size: 0.85rem; font-weight: 600; color: var(--primary-color);"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- SECTION 1: DIGITAL WALLETS -->
+        <section class="category-section">
+            <div class="cat-title"><i class="fas fa-mobile-screen-button"></i> Digital Wallets</div>
+            <div class="payment-grid">
+                <!-- EasyPaisa -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=easypaisa'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="https://www.google.com/s2/favicons?domain=easypaisa.com.pk&sz=128" alt="EasyPaisa"></div>
+                        <div class="p-name"><h3>EasyPaisa</h3><small>Personal Account</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Title</span><span class="d-value">Abdul Basit</span></div>
+                    <div class="p-detail"><span class="d-label">Number</span><span class="d-value">03328657885 <button class="copy-btn" onclick="copy('03328657885')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="qr-area"><div class="qr-box"><img src="easypaisa.jpeg" alt="EasyPaisa QR"></div><small>Official EasyPaisa QR</small></div>
+                </div>
+
+                <!-- JazzCash -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=jazzcash'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAACUCAMAAADbGilTAAAA8FBMVEX/////xgruIycAAAC8vLztAAAXFxf/xAD//flQUFD/z1zr6+v8/PxVVVUwMDDh4eGurq6WlpY3Nzf/z1X/+/G2trbz8/OhoaH/zk52dnbtDBL/+erQ0NDuHSH/ywja2tr83+BjY2OCgoLGxsYiIiLtAClra2tEREQpKSn1lZb5xsf71NX96ekMDAz/9N31m5z/78rxW1z1dRz+vQzze337qBPwZmbwOCX/yjbwUlP/6r7wQkX/6bP/2Xn4vL3zcHLvNjn/1Gv2pqb/35T0YwD0aR/yWCLxSCf3gRv4ixnzh4n5mhb/1gD8sxH/5KT3tJ+36nC5AAAI1UlEQVR4nO2be3uiSBaHQURjwCh0Ay0BUXDUXDT2ms4kMd0xyezOTGa65/t/m60Lxf1SpLXMPsvvjzyhoKpeTp06pwqB435CP9pQX5dHhVfpl6NvZ49b0YyocXN1Prr8mb4r6n7NQ7XbTw+5tJfnzwBTFE27EZMJigAvM9anNo/V5o9X2aRnd40UZiBbbHz+xgb19BNhBbTrT6fJ8/LlTT5ngLs9lxmzQtu+xGlHZ8Aty2WL1xesWYHbflpGzj5vy2wauO72lTUrpH0hc+xiI1KSQtOa231PshQroH1CfnB5JtIMf5T2ijkrj/zg4nM1Uggr7jcgZLECP1idVRh+X2AWPrNnBbS//VKVVHx8Hu0VNY+VH/6rEqwt3uw/xOaxVoK1zc1o36BFrPzw37Sw5ma/fkr08UMeK8//hw5WvGG01ipgHa5/pxr/ZxZrgRJWfviFYvwb7JaERaz88I8yL2CJWszKD0u8wN4yWF7Rsn4(continued below)..." alt="JazzCash"></div>
+                        <div class="p-name"><h3>JazzCash</h3><small>Personal Account</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Title</span><span class="d-value">Abdul Basit</span></div>
+                    <div class="p-detail"><span class="d-label">Number</span><span class="d-value">03431175490 <button class="copy-btn" onclick="copy('03431175490')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="qr-area"><div class="qr-box"><img src="jazz.jpeg" alt="JazzCash QR"></div><small>Scan to Pay via JazzCash</small></div>
+                </div>
+
+                <!-- JazzCash Business -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=jazzcash-business'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="data:image/png;base64,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 (continued below)..." alt="JazzCash Business"></div>
+                        <div class="p-name"><h3>JazzCash Business</h3><small>Corporate Merchant</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Merchant Name</span><span class="d-value">Abdul Shop</span></div>
+                    <div class="p-detail"><span class="d-label">Till ID</span><span class="d-value">981970130 <button class="copy-btn" onclick="copy('981970130')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="qr-area"><div class="qr-box"><img src="jazz_buzz.jpeg" alt="JazzCash QR"></div><small>Official Merchant QR</small></div>
+                </div>
+
+                <!-- Naya Pay -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=nayapay'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="https://www.google.com/s2/favicons?domain=nayapay.com&sz=128" alt="NayaPay"></div>
+                        <div class="p-name"><h3>Naya Pay</h3><small>Digital App</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Account Name</span><span class="d-value">Abdul Basit</span></div>
+                    <div class="p-detail"><span class="d-label">ID/Number</span><span class="d-value">03328657885 <button class="copy-btn" onclick="copy('03328657885')"><i class="far fa-copy"></i></button></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TRADITIONAL BANKING -->
+        <section class="category-section">
+            <div class="cat-title"><i class="fas fa-university"></i> Banking Channels</div>
+            <div class="payment-grid">
+                <!-- Faysal Bank -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=faysal-bank'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="https://www.google.com/s2/favicons?domain=faysalbank.com&sz=128" alt="Faysal Bank"></div>
+                        <div class="p-name"><h3>Faysal Bank</h3><small>Commercial Bank</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Account Title</span><span class="d-value">Abdul Basit</span></div>
+                    <div class="p-detail"><span class="d-label">Account Number</span><span class="d-value">3708704000006324 <button class="copy-btn" onclick="copy('3708704000006324')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="p-detail"><span class="d-label">IBAN</span><span class="d-value">PK89FAYS3708704000006324 <button class="copy-btn" onclick="copy('PK89FAYS3708704000006324')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="qr-area"><div class="qr-box"><img src="faysal.jpeg" alt="Faysal Bank QR"></div><small>Scan to Pay via Raast / Faysal Bank</small></div>
+                </div>
+
+                <!-- HBL Microfinance -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=hbl-microfinance'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="data:image/png;base64,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" alt="HBL Microfinance"></div>
+                        <div class="p-name"><h3>HBL Microfinance</h3><small>Corporate Banking</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Account Title</span><span class="d-value">Abdul Basit</span></div>
+                    <div class="p-detail"><span class="d-label">Account Number</span><span class="d-value">03328657885 <button class="copy-btn" onclick="copy('03328657885')"><i class="far fa-copy"></i></button></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: GLOBAL & CRYPTO -->
+        <section class="category-section">
+            <div class="cat-title"><i class="fas fa-globe"></i> International & Digital Assets</div>
+            <div class="payment-grid">
+                <!-- Binance / Crypto -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=crypto'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="https://www.google.com/s2/favicons?domain=binance.com&sz=128" alt="Binance"></div>
+                        <div class="p-name"><h3>Binance / Crypto</h3><small>Multi-Network Support</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Pay Name</span><span class="d-value">Az Meer Official</span></div>
+                    <div class="p-detail"><span class="d-label">Pay ID</span><span class="d-value">1023053359 <button class="copy-btn" onclick="copy('1023053359')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="qr-area">
+                        <div class="qr-box"><img src="binance.jpeg" alt="Binance QR"></div>
+                        <small>Scan to Pay or Select Network</small>
+                    </div>
+                </div>
+
+                <!-- Payoneer -->
+                <div class="p-card" onclick="window.location.href='payment-details.html?method=payoneer'">
+                    <div class="p-brand">
+                        <div class="p-icon"><img src="https://www.google.com/s2/favicons?domain=payoneer.com&sz=128" alt="Payoneer"></div>
+                        <div class="p-name"><h3>Payoneer</h3><small>B2B Payments</small></div>
+                    </div>
+                    <div class="p-detail"><span class="d-label">Recipient Email</span><span class="d-value">teamabhpk@gmail.com <button class="copy-btn" onclick="copy('teamabhpk@gmail.com')"><i class="far fa-copy"></i></button></span></div>
+                    <div class="p-detail"><span class="d-label">Account Title</span><span class="d-value">Az Meer Limited</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAYMENT SECURITY FEATURES -->
+        <section class="payment-features">
+            <div class="feat-card">
+                <i class="fas fa-shield-check"></i>
+                <h4>Secure Encryption</h4>
+                <p>All your transaction data is protected with high-level 256-bit encryption for maximum privacy.</p>
+            </div>
+            <div class="feat-card">
+                <i class="fas fa-bolt"></i>
+                <h4>Instant Processing</h4>
+                <p>Digital wallet payments are verified instantly, and bank transfers are confirmed within minutes.</p>
+            </div>
+            <div class="feat-card">
+                <i class="fas fa-file-invoice"></i>
+                <h4>Automated Receipts</h4>
+                <p>Receive an official digital receipt for every payment made through our verified channels.</p>
+            </div>
+            <div class="feat-card">
+                <i class="fas fa-user-shield"></i>
+                <h4>Buyer Protection</h4>
+                <p>We guarantee 100% security for your funds with professional dispute resolution if needed.</p>
+            </div>
+        </section>
+
+        <!-- VERIFICATION BANNER -->
+        <div class="verify-banner">
+            <div class="verify-text">
+                <h2>Ready to Verify?</h2>
+                <p>After your payment, simply upload your screenshot in the dashboard or send it to support.</p>
+            </div>
+            <a href="profile.html#section-chat" class="btn btn-primary" style="background:white !important; color:#1e293b !important">
+                <i class="fas fa-upload"></i> Upload Receipt
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        const EXCHANGE_RATE = 285; // Fixed rate for PKR
+        let activeOrderId = null;
+
+        function initPayments() {
+            const params = new URLSearchParams(window.location.search);
+            const amount = params.get('amount');
+            const orderId = params.get('order_id');
+            activeOrderId = orderId;
+
+            if (amount && orderId) {
+                const banner = document.getElementById('activeOrderBanner');
+                banner.classList.remove('hidden');
+
+                document.getElementById('displayOrderId').textContent = orderId;
+                document.getElementById('displayUsdAmount').textContent = `$${amount}`;
+
+                const pkrAmount = Math.ceil(amount * EXCHANGE_RATE);
+                document.getElementById('displayPkrAmount').textContent = `Rs ${pkrAmount.toLocaleString()}`;
+
+                // Update bottom banner text
+                const verifyText = document.querySelector('.verify-text h2');
+                if (verifyText) verifyText.innerHTML = `Paid for Order #${orderId}?`;
+
+                const uploadBtn = document.querySelector('.verify-banner a.btn');
+                if (uploadBtn) {
+                    uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Confirm & Upload Receipt';
+                    uploadBtn.href = `profile.html?order_id=${orderId}#section-chat`;
+                }
+
+                // Update all links to carry order info
+                document.querySelectorAll('.p-card').forEach(card => {
+                    const originalHref = card.getAttribute('onclick');
+                    if (originalHref && originalHref.includes('payment-details.html')) {
+                        const newHref = originalHref.replace("')", `&amount=${amount}&order_id=${orderId}')`);
+                        card.setAttribute('onclick', newHref);
+                    }
+                });
+
+                // Handle direct upload
+                document.getElementById('directReceiptUpload').onchange = async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    const status = document.getElementById('uploadStatus');
+                    status.textContent = "Initializing upload...";
+
+                    try {
+                        // 1. Ensure we have a chat session for this order
+                        const initRes = await fetch('api/live_chat.php?action=init', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ orderId: activeOrderId })
+                        });
+                        const initData = await initRes.json();
+
+                        if (initData.ok) {
+                            const chatId = initData.chatId;
+                            status.textContent = "Uploading screenshot...";
+
+                            // 2. Upload the file
+                            const formData = new FormData();
+                            formData.append('action', 'upload');
+                            formData.append('chatId', chatId);
+                            formData.append('receipt', file);
+
+                            const upRes = await fetch('api/live_chat.php', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            const upData = await upRes.json();
+
+                            if (upData.ok) {
+                                status.innerHTML = '<i class="fas fa-check-circle"></i> Receipt uploaded successfully! Our team will verify it shortly.';
+                                status.style.color = '#10b981';
+                                document.getElementById('directUploadArea').style.borderColor = '#10b981';
+                                document.getElementById('directUploadArea').style.background = '#f0fff4';
+                            } else {
+                                throw new Error(upData.message || "Upload failed");
+                            }
+                        } else {
+                            throw new Error(initData.message || "Chat initialization failed");
+                        }
+                    } catch (err) {
+                        status.textContent = "Error: " + err.message;
+                        status.style.color = '#ef4444';
+                    }
+                };
+            }
+        }
+
+        function copy(text) {
+            event.stopPropagation();
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied: ' + text);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initPayments);
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-details {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .project-hero {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+        .project-details h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+        .info-box h3 {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .info-box p {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .project-details p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .project-details h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            color: #4a3acc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown active">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link active">Portfolio</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <div class="container" style="padding-top: 140px;">
+        <div class="project-details">
+            <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+
+            <h1 id="projectTitle">E-Commerce Platform</h1>
+
+            <div class="project-hero">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+
+            <div class="project-info">
+                <div class="info-box">
+                    <h3>Client</h3>
+                    <p id="projectClient">Tech Retail Inc.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Duration</h3>
+                    <p id="projectDuration">6 months</p>
+                </div>
+                <div class="info-box">
+                    <h3>Technologies</h3>
+                    <p id="projectTech">React, Node.js, MongoDB</p>
+                </div>
+                <div class="info-box">
+                    <h3>Team Size</h3>
+                    <p id="projectTeam">8 members</p>
+                </div>
+            </div>
+
+            <h2>Project Overview</h2>
+            <p id="projectOverview">
+                We developed a comprehensive e-commerce platform that transformed how the client manages online sales.
+            </p>
+
+            <h2>Key Features</h2>
+            <ul id="projectFeatures">
+                <li>Product catalog management</li>
+                <li>Shopping cart and checkout</li>
+                <li>Payment integration</li>
+                <li>User accounts and profiles</li>
+            </ul>
+
+            <h2>Results & Impact</h2>
+            <ul id="projectResults">
+                <li>40% increase in online sales</li>
+                <li>Improved customer satisfaction</li>
+                <li>Reduced cart abandonment by 25%</li>
+                <li>24/7 system uptime</li>
+            </ul>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--light-bg); border-radius: 10px; text-align: center;">
+                <h3>Interested in a Similar Project?</h3>
+                <p style="margin: 1rem 0;">Let's create something amazing for your business.</p>
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Projects Section -->
+    <section class="other-projects" style="padding: 100px 0; background: #f8fafc; border-top: 1px solid #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Explore More <span>Masterpieces</span></h2>
+            <div class="portfolio-grid" id="otherProjectsGrid">
+                <!-- Dynamically loaded via script -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" aria-label="Email for newsletter" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal" aria-hidden="true">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        async function loadProjectDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                document.querySelector('.project-details').innerHTML = '<h1>Project not found</h1>';
+                return;
+            }
+
+            try {
+                const res = await fetch(`api/content.php?type=portfolio`);
+                const data = await res.json();
+                const project = data.portfolio.find(p => p.id == id);
+
+                if (!project) {
+                    document.querySelector('.project-details').innerHTML = '<h1>Project not found</h1>';
+                    return;
+                }
+
+                document.title = `${project.title} - Az Meer Details`;
+
+                // Set Header & Image
+                document.getElementById('projectTitle').textContent = project.title;
+                const hero = document.querySelector('.project-hero');
+                if (project.image) {
+                    hero.innerHTML = `<img src="${project.image}" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">`;
+                }
+
+                // Set Info Box
+                document.getElementById('projectClient').textContent = project.client || 'N/A';
+                document.getElementById('projectDuration').textContent = project.duration || 'N/A';
+                document.getElementById('projectTech').textContent = project.technologies || 'N/A';
+                document.getElementById('projectTeam').textContent = project.team_size || 'N/A';
+
+                // Overview
+                document.getElementById('projectOverview').textContent = project.overview || project.description || 'No overview available.';
+
+                // Features
+                const featuresList = document.getElementById('projectFeatures');
+                featuresList.innerHTML = '';
+                if (project.features) {
+                    project.features.split('\n').filter(f => f.trim()).forEach(feature => {
+                        const li = document.createElement('li');
+                        li.textContent = feature.trim();
+                        featuresList.appendChild(li);
+                    });
+                } else {
+                    featuresList.innerHTML = '<li>Details coming soon.</li>';
+                }
+
+                // Results
+                const resultsList = document.getElementById('projectResults');
+                resultsList.innerHTML = '';
+                if (project.results) {
+                    project.results.split('\n').filter(r => r.trim()).forEach(result => {
+                        const li = document.createElement('li');
+                        li.textContent = result.trim();
+                        resultsList.appendChild(li);
+                    });
+                } else {
+                    resultsList.innerHTML = '<li>Impact analysis in progress.</li>';
+                }
+
+                // Render other projects
+                const otherProjectsContainer = document.getElementById('otherProjectsGrid');
+                if (otherProjectsContainer) {
+                    const others = data.portfolio.filter(p => p.id != id).slice(0, 3);
+                    others.forEach(p => {
+                        if (window.renderPortfolio) {
+                            otherProjectsContainer.insertAdjacentHTML('beforeend', window.renderPortfolio(p));
+                        }
+                    });
+                }
+
+            } catch (e) {
+                console.error(e);
+                document.querySelector('.project-details').innerHTML = '<h1>Error loading project data.</h1>';
+            }
+        }
+
+        loadProjectDetails();
+    </script>
+</body>
+
+</html>

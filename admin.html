@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Admin - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --admin-bg: #f4f7fe; --sidebar: #1e293b; --primary: #2563eb; }
+        body { background: var(--admin-bg); margin: 0; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .admin-layout { display: flex; height: 100vh; }
+        .sidebar { width: 260px; background: var(--sidebar); color: white; display: flex; flex-direction: column; }
+        .sidebar-brand { padding: 25px; font-size: 1.2rem; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-list { flex: 1; overflow-y: auto; padding: 15px 0; }
+        .nav-item { padding: 12px 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; color: #94a3b8; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.05); color: white; }
+        .nav-item.active { border-left: 4px solid var(--primary); background: rgba(37,99,235,0.1); }
+        .main-container { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .header { height: 70px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .content-body { flex: 1; padding: 30px; overflow-y: auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .stat-icon { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+
+        .moderation-panel { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .user-log-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .user-log-table th { text-align: left; padding: 12px; background: #f8fafc; color: #64748b; font-size: 0.8rem; text-transform: uppercase; }
+        .user-log-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
+
+        .editor-grid { display: grid; grid-template-columns: 320px 1fr; gap: 25px; height: 600px; }
+        .list-box, .form-box { background: white; border-radius: 15px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; overflow: hidden; }
+        .list-items { flex: 1; overflow-y: auto; }
+        .data-row { padding: 15px; border-bottom: 1px solid #f1f5f9; cursor: pointer; color: #1e293b; }
+        .data-row:hover, .data-row.active { background: #f8fafc; }
+        .data-row.active { border-left: 4px solid var(--primary); }
+        .form-area { padding: 25px; flex: 1; overflow-y: auto; }
+        .hidden { display: none !important; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .toast { position: fixed; bottom: 20px; right: 20px; padding: 12px 25px; background: #1e293b; color: white; border-radius: 8px; transform: translateY(100px); transition: 0.3s; z-index: 10000; }
+        .toast.show { transform: translateY(0); }
+
+        #adminChatMessages { background: #f1f5f9; border-radius: 12px; }
+        .msg { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 0.9rem; }
+        .msg.sent { align-self: flex-end; background: var(--primary); color: white; }
+        .msg.received { align-self: flex-start; background: white; color: #1e293b; border: 1px solid #e2e8f0; }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-brand">Az Meer Admin</div>
+            <nav class="nav-list">
+                <div class="nav-item active" data-view="dashboard"><i class="fas fa-th-large"></i> Dashboard</div>
+                <div class="nav-item" data-view="orders"><i class="fas fa-shopping-cart"></i> Orders/Leads</div>
+                <div class="nav-item" data-view="moderation"><i class="fas fa-user-shield"></i> Moderation</div>
+                <div class="nav-item" data-view="services"><i class="fas fa-concierge-bell"></i> Services</div>
+                <div class="nav-item" data-view="portfolio"><i class="fas fa-briefcase"></i> Portfolio</div>
+                <div class="nav-item" data-view="blogs"><i class="fas fa-blog"></i> Blogs</div>
+                <div class="nav-item" data-view="live-chat"><i class="fas fa-comments"></i> Live Chat <span id="liveChatCount" style="background:#ef4444; color:white; border-radius:10px; padding:2px 6px; font-size:10px; display:none">0</span></div>
+                <div class="nav-item" data-view="users"><i class="fas fa-users-cog"></i> User Management</div>
+                <div class="nav-item" data-view="settings"><i class="fas fa-cog"></i> Global Settings</div>
+            </nav>
+        </aside>
+
+        <main class="main-container">
+            <header class="header">
+                <h2 id="viewTitle">Dashboard</h2>
+                <div style="display:flex; gap:15px;">
+                    <a href="index.html" class="btn btn-secondary"><i class="fas fa-home"></i> Go Home</a>
+                    <button class="btn btn-primary" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Admin Dashboard -->
+                <div id="view-dashboard" class="view-section">
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-icon" style="background:#dbeafe;color:#2563eb"><i class="fas fa-users"></i></div><div><p style="margin:0;color:#64748b">Total Users</p><h3 id="stat-users" style="margin:0">0</h3></div></div>
+                        <div class="stat-card"><div class="stat-icon" style="background:#dcfce7;color:#16a34a"><i class="fas fa-shopping-cart"></i></div><div><p style="margin:0;color:#64748b">Total Orders</p><h3 id="stat-orders" style="margin:0">0</h3></div></div>
+                        <div class="stat-card"><div class="stat-icon" style="background:#fef3c7;color:#d97706"><i class="fas fa-concierge-bell"></i></div><div><p style="margin:0;color:#64748b">Services</p><h3 id="stat-services" style="margin:0">0</h3></div></div>
+                        <div class="stat-card"><div class="stat-icon" style="background:#fee2e2;color:#dc2626"><i class="fas fa-exclamation-triangle"></i></div><div><p style="margin:0;color:#64748b">Reports</p><h3 id="stat-reports" style="margin:0">0</h3></div></div>
+                    </div>
+
+                    <div class="moderation-panel">
+                        <h3>System Activity Log</h3>
+                        <table class="user-log-table">
+                            <thead>
+                                <tr><th>Timestamp</th><th>User</th><th>Action</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="activityLogBody">
+                                <tr><td colspan="4" style="text-align:center; color:#94a3b8;">No recent activity logs available.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Moderation View -->
+                <div id="view-moderation" class="view-section hidden">
+                    <div class="card">
+                        <h3>Account Verification Queue</h3>
+                        <p style="color:#64748b">Review and verify new freelancer or staff accounts.</p>
+                        <div id="verificationQueue" style="margin-top:20px;">
+                            <p style="text-align:center; padding:40px; border:2px dashed #e2e8f0; border-radius:12px; color:#94a3b8;">Queue is currently empty.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-crud" class="view-section hidden">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                        <input type="text" placeholder="Search..." style="padding:10px; border-radius:8px; border:1px solid #ddd; width:300px;">
+                        <button class="btn btn-primary btn-sm" id="addNewBtn"><i class="fas fa-plus"></i> Add New</button>
+                    </div>
+                    <div class="editor-grid">
+                        <div class="list-box"><div class="list-items" id="itemList"></div></div>
+                        <div class="form-box">
+                            <form id="dynamicForm" class="form-area">
+                                <div id="formContent" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;"></div>
+                                <div style="margin-top:20px; display:flex; gap:10px;">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary" id="deleteBtn">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-live-chat" class="view-section hidden">
+                    <div class="editor-grid">
+                        <div class="list-box"><div class="list-items" id="staffChatList"></div></div>
+                        <div class="form-box" style="display:flex; flex-direction:column;">
+                            <div id="adminChatHeader" style="padding:15px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                                <div id="chatUserInfo">Select Chat</div>
+                                <div id="assignTools" class="hidden" style="display:flex; gap:10px; align-items:center;">
+                                    <select id="staffFreelancerSelect" style="padding:5px; border-radius:6px; border:1px solid #ddd;"></select>
+                                    <button class="btn btn-primary btn-sm" onclick="assignActiveChat()">Assign</button>
+                                </div>
+                            </div>
+                            <div id="adminChatMessages" style="flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:10px;"></div>
+                            <form id="adminChatForm" style="padding:15px; border-top:1px solid #e2e8f0; display:flex; gap:10px;">
+                                <input type="text" id="adminChatInput" placeholder="Reply..." style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd;">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="overlay hidden" id="loginOverlay">
+        <div style="background:white; padding:40px; border-radius:15px; width:350px; text-align:center;">
+            <h2>Admin Restricted</h2>
+            <p style="color:#64748b; margin-bottom:20px;">Access denied. Authorized personnel only.</p>
+            <a href="auth.html" class="btn btn-primary" style="width:100%">Return to Login</a>
+        </div>
+    </div>
+
+    <div class="toast" id="adminToast">Action Successful</div>
+    <script src="admin.js"></script>
+</body>
+</html>

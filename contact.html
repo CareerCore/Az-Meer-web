@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Az Meer(SMC-Private) Limited</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-hero {
+            padding-top: 180px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            text-align: center;
+        }
+        .contact-grid-main {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        .info-panel {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-elevated);
+        }
+        .info-panel h3 { color: white; margin-bottom: 30px; font-size: 1.8rem; }
+        .contact-method-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .method-text h4 { font-size: 1rem; margin-bottom: 5px; opacity: 0.8; }
+        .method-text p { font-size: 1.1rem; font-weight: 600; }
+
+        .form-panel {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #f1f5f9;
+        }
+
+        .social-connect {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .social-icons-grid {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-btn-large {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+        .social-btn-large:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .office-hours {
+            margin-top: 40px;
+            background: rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 20px;
+        }
+        .hour-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .hour-row:last-child { margin-bottom: 0; }
+
+        @media (max-width: 991px) {
+            .contact-grid-main { grid-template-columns: 1fr; margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Az Meer(SMC-Private) Limited</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Explore <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-link">Portfolio</a></li>
+                        <li><a href="apps.html" class="dropdown-link">Our Apps</a></li>
+                        <li><a href="team.html" class="dropdown-link">Our Team</a></li>
+                        <li><a href="payments.html" class="dropdown-link">Payments</a></li>
+                        <li><a href="blogs.html" class="dropdown-link">Blogs</a></li>
+                        <li><a href="top-services.html" class="dropdown-link">Top Services</a></li>
+                        <li><a href="faqs.html" class="dropdown-link">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li id="auth-nav-item" style="display: none;"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                <li class="nav-action" id="auth-actions">
+                    <button class="btn btn-secondary btn-sm" type="button" id="openLogin" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="logoutBtn" style="display: none;" onclick="handleLogout()">Logout</button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="contact-hero">
+        <div class="container">
+            <h1 class="section-title">Let's Connect and <span>Innovate</span></h1>
+            <p style="max-width: 600px; margin: -20px auto 40px; color: var(--text-muted); font-size: 1.1rem;">Have a project in mind or just want to say hi? We'd love to hear from you. Our team is ready to help you scale your digital vision.</p>
+
+            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2rem; font-weight: 800; color: var(--primary-color);">24/7</h3>
+                    <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Availability</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2rem; font-weight: 800; color: var(--primary-color);">&lt; 2h</h3>
+                    <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Response Time</p>
+                </div>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 2rem; font-weight: 800; color: var(--primary-color);">100%</h3>
+                    <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Client Focused</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="contact-grid-main">
+            <!-- Left Side: Info -->
+            <div class="info-panel">
+                <h3>Contact Information</h3>
+                <div class="contact-method-item">
+                    <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="method-text">
+                        <h4>Headquarters</h4>
+                        <p>Raiwand Road, Lahore, Pakistan</p>
+                    </div>
+                </div>
+                <div class="contact-method-item">
+                    <div class="method-icon"><i class="fas fa-phone"></i></div>
+                    <div class="method-text">
+                        <h4>Direct Call</h4>
+                        <p>+92 332 8657885<br>+92 370 0602339</p>
+                    </div>
+                </div>
+                <div class="contact-method-item">
+                    <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="method-text">
+                        <h4>Email Us</h4>
+                        <p>teamabhpk@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="office-hours">
+                    <h4 style="margin-bottom: 15px; font-size: 1rem;"><i class="far fa-clock"></i> Office Hours</h4>
+                    <div class="hour-row"><span>Mon - Friday</span><span>09:00 AM - 06:00 PM</span></div>
+                    <div class="hour-row"><span>Saturday</span><span>10:00 AM - 02:00 PM</span></div>
+                    <div class="hour-row" style="opacity: 0.6;"><span>Sunday</span><span>Closed</span></div>
+                </div>
+
+                <div class="social-connect">
+                    <h4 style="font-size: 1rem;">Connect Socially</h4>
+                    <div class="social-icons-grid">
+                        <a href="#" class="social-btn-large" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn-large" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn-large" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-btn-large" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn-large" aria-label="WhatsApp" style="background: #25d366; color: white;"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="form-panel">
+                <div class="contact-tabs" style="margin-bottom: 40px;">
+                    <button class="tab-btn active" onclick="switchContactTab('email')">Send a Message</button>
+                    <button class="tab-btn" onclick="switchContactTab('chat')">Live Support</button>
+                </div>
+
+                <div id="email-tab" class="contact-tab-content active">
+                    <form class="contact-form" id="contactForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:8px; font-weight:600;">Full Name</label>
+                                <input type="text" placeholder="John Doe" required style="width:100%; padding:14px; border-radius:12px; border:1px solid #e2e8f0; outline:none;">
+                            </div>
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:8px; font-weight:600;">Email Address</label>
+                                <input type="email" placeholder="john@company.com" required style="width:100%; padding:14px; border-radius:12px; border:1px solid #e2e8f0; outline:none;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display:block; margin-bottom:8px; font-weight:600;">Subject</label>
+                            <input type="text" placeholder="Project Inquiry" required style="width:100%; padding:14px; border-radius:12px; border:1px solid #e2e8f0; outline:none;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <label style="display:block; margin-bottom:8px; font-weight:600;">How can we help?</label>
+                            <textarea placeholder="Tell us about your project or query..." rows="5" required style="width:100%; padding:14px; border-radius:12px; border:1px solid #e2e8f0; outline:none; resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Inquiry</button>
+                    </form>
+                </div>
+
+                <div id="chat-tab" class="contact-tab-content">
+                    <div class="chat-direct-box" style="padding: 60px 20px;">
+                        <i class="fas fa-headset fa-4x" style="color: var(--primary-color); margin-bottom: 25px;"></i>
+                        <h3 style="margin-bottom: 15px;">Instant Support</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 35px; line-height: 1.6;">Our support engineers are online and ready to discuss your project in real-time. Average response time: <span style="color: var(--primary-color); font-weight: 700;">2 minutes</span>.</p>
+                        <button class="btn btn-primary" onclick="toggleLiveChat()" style="padding: 18px 45px;">
+                            <i class="fas fa-comments" style="margin-right: 10px;"></i> Start Live Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="departments" style="margin-top: 100px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Specific <span>Departments</span></h2>
+                <p style="color: var(--text-muted); margin-top: -20px;">Reach out to the right team for faster assistance.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-hand-holding-dollar" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Sales & Partnerships</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Looking to start a new project or partner with us?</p>
+                    <a href="mailto:sales@azmeer.com" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">sales@azmeer.com</a>
+                </div>
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-code-branch" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Technical Support</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Need help with an ongoing project or technical query?</p>
+                    <a href="mailto:support@azmeer.com" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">support@azmeer.com</a>
+                </div>
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#f1f5f9'">
+                    <i class="fas fa-users-gear" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 10px;">Careers & HR</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Want to join our global team of experts?</p>
+                    <a href="mailto:hr@azmeer.com" style="color: var(--primary-color); font-weight: 700; text-decoration: none;">hr@azmeer.com</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="global-reach" style="margin-top: 100px; padding: 80px 60px; background: #f8fafc; border-radius: 40px; border: 1px solid #f1f5f9;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Global Reach, <span>Personal Touch</span></h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">Az Meer Limited operates with a global mindset. While our headquarters are in Pakistan, we have dedicated representatives and partners across several key regions to ensure we can meet you wherever you are.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">North America</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Serving hubs in Silicon Valley & Toronto.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Europe & UK</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Delivering excellence in London & Berlin.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Middle East</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Partnerships in Dubai & Riyadh.</p>
+                        </div>
+                        <div style="padding: 20px; background: white; border-radius: 16px; box-shadow: var(--shadow-soft);">
+                            <h5 style="margin-bottom: 5px; font-weight: 800;">Asia Pacific</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Innovating in Singapore & Australia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-earth-americas" style="font-size: 10rem; color: var(--primary-color); opacity: 0.1;"></i>
+                    <h3 style="margin-top: 20px;">Available in 20+ Countries</h3>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Our remote-first culture ensures seamless collaboration across all timezones.</p>
+                    <button class="btn btn-primary" style="margin-top: 30px;" onclick="toggleLiveChat()">Check Availability</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact FAQ -->
+        <section class="contact-faq" style="margin-top: 100px; padding-bottom: 100px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Quick <span>Help</span></h2>
+                <p style="color: var(--text-muted); margin-top: -20px;">Common questions about reaching out to Az Meer.</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+                <details style="background: white; border-radius: 16px; border: 1px solid #f1f5f9; padding: 20px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1e293b; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        How quickly can I expect a response?
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: var(--primary-color);"></i>
+                    </summary>
+                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">Our average response time for email inquiries is under 2 hours during business hours. For immediate assistance, please use our Live Chat.</p>
+                </details>
+                <details style="background: white; border-radius: 16px; border: 1px solid #f1f5f9; padding: 20px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1e293b; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Can I schedule a video consultation?
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: var(--primary-color);"></i>
+                    </summary>
+                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">Yes! Once you submit an inquiry, our sales team will reach out to schedule a discovery call via Zoom or Microsoft Teams.</p>
+                </details>
+                <details style="background: white; border-radius: 16px; border: 1px solid #f1f5f9; padding: 20px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1e293b; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Do you offer project estimates for free?
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: var(--primary-color);"></i>
+                    </summary>
+                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">Absolutely. We provide initial consultations and basic project scoping at no cost to help you understand the potential of your idea.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Social Media Ecosystem -->
+        <section class="social-ecosystem" style="margin-top: 100px; padding: 80px 0; border-top: 1px solid #f1f5f9;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="section-title">Our Digital <span>Ecosystem</span></h2>
+                <p style="color: var(--text-muted); margin-top: -20px;">Beyond support tickets, join our thriving online communities.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- LinkedIn -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #0077b5; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Professional Network</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Follow us on LinkedIn for industry insights, B2B partnerships, and corporate milestones.</p>
+                    <a href="https://www.linkedin.com/company/azmeer" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #0077b5; color: #0077b5;">Connect on LinkedIn</a>
+                </div>
+
+                <!-- YouTube -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #ff0000; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Az Meer TV</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Subscribe to our YouTube channel for software tutorials, project demos, and tech vlogs.</p>
+                    <a href="https://youtube.com/@mr_-A" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #ff0000; color: #ff0000;">Subscribe to Channel</a>
+                </div>
+
+                <!-- WhatsApp -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #25d366; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Direct Business Line</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">For instant project discussions and quick inquiries, our WhatsApp business team is active 24/7.</p>
+                    <a href="https://wa.me/923328657885" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #25d366; color: #25d366;">Chat on WhatsApp</a>
+                </div>
+
+                <!-- Facebook/Instagram -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Behind the Scenes</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">See our culture, office life, and creative design process on our Instagram and Facebook pages.</p>
+                    <a href="https://facebook.com/azmeer" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #c13584; color: #c13584;">Follow Our Story</a>
+                </div>
+
+                <!-- GitHub -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #24292e; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Open Source & Tech</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Explore our public repositories, open-source contributions, and technical documentation.</p>
+                    <a href="https://github.com/azmeer" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #24292e; color: #24292e;">View Repositories</a>
+                </div>
+
+                <!-- X (Twitter) -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #000000; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 25px;">
+                        <i class="fab fa-x-twitter"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Real-time Updates</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Follow our official X handle for quick announcements, tech news, and industry trends.</p>
+                    <a href="https://x.com/azmeer" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #000000; color: #000000;">Follow on X</a>
+                </div>
+
+                <!-- TikTok -->
+                <div style="padding: 40px; background: white; border-radius: 24px; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft); transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 70px; height: 70px; background: #000000; color: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 25px;">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">Quick Tech Tips</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Short-form creative content, coding tips, and office fun. Join our growing TikTok community.</p>
+                    <a href="https://tiktok.com/@azmeer" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-color: #ff0050; color: #ff0050;">Join on TikTok</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Maps Placeholder Section -->
+        <section class="location-map" style="margin-top: 100px; padding-bottom: 100px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">Visit Our <span>Office</span></h2>
+                <p style="color: var(--text-muted); margin-top: -20px;">Drop by for a cup of coffee and a project discussion.</p>
+            </div>
+            <div style="width: 100%; height: 450px; background: #e2e8f0; border-radius: 40px; overflow: hidden; position: relative; border: 1px solid #f1f5f9; box-shadow: var(--shadow-soft);">
+                <!-- Replace with actual Google Map iframe in production -->
+                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80') center/cover; filter: grayscale(0.5) opacity(0.3);"></div>
+                <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+                    <div style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                        <i class="fas fa-location-dot" style="color: var(--primary-color); font-size: 1.5rem;"></i>
+                    </div>
+                    <h4 style="font-size: 1.4rem; font-weight: 800;">Az Meer Limited HQ</h4>
+                    <p style="font-weight: 600; color: var(--text-main); margin-top: 5px;">Raiwand Road, Lahore, Punjab, Pakistan</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-secondary btn-sm" style="margin-top: 20px; background: white;">Open in Google Maps</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>Az Meer(SMC-Private) Limited</h3>
+                    <p>Building the digital future with precision and innovation. We deliver world-class software solutions tailored to your business needs.</p>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blogs.html">Our Blogs</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Mobile Applications</a></li>
+                        <li><a href="services.html">UI/UX Design</a></li>
+                        <li><a href="services.html">Digital Marketing</a></li>
+                        <li><a href="services.html">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Raiwand Road, Lahore, Pakistan</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+92 332 8657885<br>+92 370 0602339</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>teamabhpk@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4 style="font-size: 0.9rem; margin-top: 30px;">Newsletter</h4>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
+                            <input type="email" placeholder="Your email address" required>
+                            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Az Meer(SMC-Private) Limited. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <a href="#" class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="liveChatWidget">
+        <div class="chat-toggle" id="chatToggle" onclick="toggleLiveChat()">
+            <i class="fas fa-comments"></i>
+            <span class="badge" id="chatBadge" style="display:none"></span>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="header-info">
+                    <div class="status-dot"></div>
+                    <div>
+                        <h4>Az Meer Support</h4>
+                        <p>We're Online</p>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleLiveChat()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="liveMessages">
+                <div class="msg received">
+                    <div class="msg-content">Welcome to Az Meer(SMC-Private) Limited! How can we assist you today?</div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+            <form class="chat-input-area" id="liveChatForm">
+                <input type="text" id="liveInput" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" id="sendMsgBtn"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-backdrop" data-close="login"></div>
+        <div class="login-panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="login-close" type="button" id="closeLogin" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="loginTitle">Admin / User Login</h2>
+            <p class="login-sub">Enter your email and password to continue.</p>
+            <form id="loginPopupForm" data-skip-auto>
+                <input type="text" id="popupUsername" placeholder="Email or Username" required autocomplete="username">
+                <input type="password" id="popupPassword" placeholder="Password" required autocomplete="current-password">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <p class="login-message" id="popupLoginMessage"></p>
+            </form>
+            <p class="login-footer">No account? <a href="auth.html">Create one here</a>.</p>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
